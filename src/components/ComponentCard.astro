@@ -1,0 +1,167 @@
+---
+const { title, html, css, js } = Astro.props;
+// Generujemy unikalny ID dla tej instancji komponentu
+const uniqueId = `component-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div
+	class="code-preview bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden"
+	id={`code-preview-${uniqueId}`}>
+	<div class="p-5">
+		<h2 class="text-xl font-bold text-gray-800 mb-4">{title}</h2>
+
+		<div class="tabs-wrapper">
+			<div class="hidden sm:flex border-b border-gray-200">
+				<button
+					class="tab-button active px-4 py-2 text-sm font-medium border-b-2 border-blue-600 text-blue-600 cursor-pointer"
+					data-tab="preview"
+					data-component-id={uniqueId}>Podgląd</button
+				>
+				<button
+					class="tab-button px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 border-transparent cursor-pointer"
+					data-tab="html"
+					data-component-id={uniqueId}>HTML</button
+				>
+				<button
+					class="tab-button px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 border-transparent cursor-pointer"
+					data-tab="css"
+					data-component-id={uniqueId}>CSS</button
+				>
+				<button
+					class="tab-button px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 border-transparent cursor-pointer"
+					data-tab="js"
+					data-component-id={uniqueId}>JS</button
+				>
+			</div>
+
+			<div class="sm:hidden mb-4">
+				<select
+					class="tab-select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+					data-component-id={uniqueId}>
+					<option value="preview" selected>Podgląd</option>
+					<option value="html">HTML</option>
+					<option value="css">CSS</option>
+					<option value="js">JS</option>
+				</select>
+			</div>
+
+			<div class="tab-content mt-4">
+				<div class="tab-pane active" id="preview" data-component-id={uniqueId}>
+					<div class="preview p-4 bg-gray-50 rounded-lg">
+						{/* Kontener, w którym JS umieści <style> i HTML */}
+						<div class="preview-area" data-component-id={uniqueId}></div>
+					</div>
+				</div>
+				<div class="tab-pane hidden" id="html" data-component-id={uniqueId}>
+					<pre class="bg-gray-50 p-4 rounded-lg overflow-x-auto"><p class=" text-sm">{html}</p></pre>
+				</div>
+				<div class="tab-pane hidden" id="css" data-component-id={uniqueId}>
+					<pre class="bg-gray-50 p-4 rounded-lg overflow-x-auto"><p class="text-sm">{css}</p></pre>
+				</div>
+				<div class="tab-pane hidden" id="js" data-component-id={uniqueId}>
+					<pre
+						class="bg-gray-50 p-4 rounded-lg overflow-x-auto"><p class="text-sm">{js}</p></pre>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="flex justify-end items-center gap-2 p-4 bg-gray-50 border-t border-gray-200">
+		<button
+			class="cursor-pointer copy-btn text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 focus:outline-none transition-colors"
+			data-copy-type="html"
+			data-component-id={uniqueId}>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-4 w-4 inline mr-1"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor">
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 0 002-2v-1M8 5a2 2 0 002 2h2a2 0 002-2M8 5a2 2 0 012-2h2a2 0 012 2m0 0h2a2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+				></path>
+			</svg>
+			Kopiuj HTML
+		</button>
+		<button
+			class="cursor-pointer copy-btn text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 focus:outline-none transition-colors"
+			data-copy-type="css"
+			data-component-id={uniqueId}>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-4 w-4 inline mr-1"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor">
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 0 002-2v-1M8 5a2 2 0 002 2h2a2 0 002-2M8 5a2 2 0 012-2h2a2 0 012 2m0 0h2a2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+				></path>
+			</svg>
+			Kopiuj CSS
+		</button>
+		<button
+			class="cursor-pointer copy-btn text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 focus:outline-none transition-colors"
+			data-copy-type="js"
+			data-component-id={uniqueId}>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				class="h-4 w-4 inline mr-1"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor">
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 0 002-2v-1M8 5a2 2 0 002 2h2a2 0 002-2M8 5a2 2 0 012-2h2a2 0 012 2m0 0h2a2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+				></path>
+			</svg>
+			Kopiuj JS
+		</button>
+	</div>
+
+	{/* Ukryty kontener przekazujący dane do JS */}
+	{/* WAŻNA ZMIANA: Używamy standardowych divów, gdzie Astro poprawnie wstawi wartości zmiennych */}
+	<div class="component-data-container" hidden data-component-id={uniqueId}>
+		{/* set:html jest potrzebne dla HTML, bo może zawierać tagi. textContent dla CSS/JS */}
+		<div class="component-data-html" set:html={html} />
+		<div class="component-data-css">{css}</div>
+		<div class="component-data-js">{js}</div>
+	</div>
+</div>
+
+<style>
+	/* Style specyficzne dla komponentu ComponentCard (nie dla wstawianego preview) */
+	.tab-button,
+	.copy-btn {
+		transition: all 0.2s ease-in-out;
+	}
+
+	pre {
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+		line-height: 1.5;
+	}
+
+	.tab-pane pre {
+		max-height: 400px;
+	}
+
+	/* Upewnij się, że tylko aktywny panel jest widoczny - obsługa przez JS */
+	.tab-pane {
+		display: none;
+	}
+	.tab-pane.active {
+		display: block;
+	}
+	.tab-pane.hidden {
+		display: none;
+	}
+
+	/* Uwaga: Style z propsa 'css' będą dynamicznie dodawane WEWNĄTRZ '.preview-area' */
+</style>
