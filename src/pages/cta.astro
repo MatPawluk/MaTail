@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/MainLayout.astro';
+import ComponentCard from '../components/ComponentCard.astro';
+import componentExamples from '../data/cta.json';
+---
+
+<Layout>
+	<div class="space-y-8">
+		{}
+		{}
+		{
+			componentExamples.map(example => (
+				<ComponentCard title={example.title} html={example.html} css={example.css} js={example.js} />
+			))
+		}
+	</div>
+</Layout>
