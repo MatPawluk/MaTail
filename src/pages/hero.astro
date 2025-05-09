@@ -1,20 +1,15 @@
 ---
 import Layout from '../layouts/MainLayout.astro';
 import ComponentCard from '../components/ComponentCard.astro';
-
-// *** ZMIANA TUTAJ ***
-// Importujemy dane z pliku JSON
 import componentExamples from '../data/hero.json';
 
-// Teraz zmienna componentExamples zawiera dane z pliku JSON
-// Możesz jej używać tak samo jak wcześniej
 
 ---
 
 <Layout>
     <div class="space-y-8">
-        {/* Dodajemy trochę odstępu między kartami */}
-        {/* Iterujemy po zaimportowanej tablicy i renderujemy ComponentCard dla każdego elementu */}
+        {}
+        {}
         {
             componentExamples.map(example => (
                 <ComponentCard title={example.title} html={example.html} css={example.css} js={example.js} />
