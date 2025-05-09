@@ -1,0 +1,23 @@
+---
+const navigation = [
+	{ href: '/', label: '🏠 Strona główna' },
+	{ href: '/about', label: 'ℹ️ O nas' },
+	{ href: '/contact', label: '📞 Kontakt' },
+	// Dodaj kolejne sekcje tutaj
+];
+const { pathname } = Astro.url;
+---
+
+<nav class="w-64 h-screen bg-gray-50 border-r fixed top-16 left-0 pt-6 px-4">
+	<ul class="space-y-2">
+		{
+			navigation.map(({ href, label }) => (
+				<li>
+					<a href={href} class={`block px-4 py-2 rounded hover:bg-gray-100 ${pathname === href ? 'bg-blue-100' : ''}`}>
+						{label}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>
