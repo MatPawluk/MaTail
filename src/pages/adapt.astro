@@ -1,0 +1,445 @@
+---
+import Layout from '../layouts/MainLayout.astro';
+---
+
+<Layout>
+  <div slot="page-title">Adaptacja komponentów do frameworków</div>
+  <div slot="page-description">Przewodnik jak dostosować komponenty MaTail do popularnych frameworków JavaScript</div>
+  
+  <div class="space-y-8">
+    <!-- Wprowadzenie -->
+    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Dostosowanie komponentów do frameworków</h2>
+      <p class="text-gray-700 mb-4">
+        Komponenty MaTail zostały zaprojektowane w czystym HTML i CSS, ale można je łatwo adaptować do różnych frameworków JavaScript. 
+        Ta strona zawiera wskazówki i przykłady, jak dostosować komponenty do najpopularniejszych frameworków.
+      </p>
+      <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+        <div class="flex items-start gap-2">
+          <svg class="text-blue-600 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <p class="text-blue-700">
+            <strong>Uwaga:</strong> W przyszłości planujemy udostępnienie gotowych komponentów dla Vue i React jako oddzielne biblioteki. 
+            Poniższe wskazówki pomogą Ci w międzyczasie zaadaptować obecne komponenty.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zakładki frameworków -->
+    <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+      <div class="border-b border-gray-200">
+        <div class="flex overflow-x-auto">
+          <button id="tab-react" class="px-6 py-3 text-blue-600 border-b-2 border-blue-600 font-medium">
+            React
+          </button>
+          <button id="tab-vue" class="px-6 py-3 text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 font-medium">
+            Vue
+          </button>
+          <button id="tab-angular" class="px-6 py-3 text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 font-medium">
+            Angular
+          </button>
+          <button id="tab-svelte" class="px-6 py-3 text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-300 font-medium">
+            Svelte
+          </button>
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <!-- React Content -->
+        <div id="content-react" class="tab-content">
+          <h3 class="text-xl font-bold text-gray-800 mb-4">
+            <span class="inline-block align-middle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-blue-500">
+                <path d="M12 9.861A2.139 2.139 0 1 0 12 14.139 2.139 2.139 0 1 0 12 9.861zM6.008 16.255l-.472-.12C2.018 15.246 0 13.737 0 11.996s2.018-3.25 5.536-4.139l.472-.119.133.468a23.53 23.53 0 0 0 1.363 3.578l.101.213-.101.213a23.307 23.307 0 0 0-1.363 3.578l-.133.467zM5.317 8.95c-2.674.751-4.315 1.9-4.315 3.046 0 1.145 1.641 2.294 4.315 3.046a24.95 24.95 0 0 1 1.182-3.046A24.752 24.752 0 0 1 5.317 8.95zM17.992 16.255l-.133-.469a23.357 23.357 0 0 0-1.364-3.577l-.101-.213.101-.213a23.42 23.42 0 0 0 1.364-3.578l.133-.468.473.119c3.517.889 5.535 2.398 5.535 4.14s-2.018 3.25-5.535 4.139l-.473.12zm-.491-4.259c.48 1.039.877 2.06 1.182 3.046 2.675-.752 4.315-1.901 4.315-3.046 0-1.146-1.641-2.294-4.315-3.046a24.788 24.788 0 0 1-1.182 3.046zM5.31 8.945l-.133-.467C4.188 4.992 4.488 2.494 6 1.622c1.483-.856 3.864.155 6.359 2.716l.34.349-.34.349a23.552 23.552 0 0 0-2.422 2.967l-.135.193-.235.02a23.657 23.657 0 0 0-3.785.61l-.472.119zm1.896-6.63c-.268 0-.505.058-.705.173-.994.573-1.17 2.565-.485 5.253a25.122 25.122 0 0 1 3.233-.501 24.847 24.847 0 0 1 2.052-2.544c-1.56-1.519-3.037-2.381-4.095-2.381zM16.795 22.677c-.001 0-.001 0 0 0-1.425 0-3.255-1.073-5.154-3.023l-.34-.349.34-.349a23.53 23.53 0 0 0 2.421-2.968l.135-.193.234-.02a23.63 23.63 0 0 0 3.787-.609l.472-.119.134.468c.987 3.484.688 5.983-.824 6.854a2.38 2.38 0 0 1-1.205.308zm-4.096-3.381c1.56 1.519 3.037 2.381 4.095 2.381h.001c.267 0 .505-.058.704-.173.994-.573 1.171-2.566.485-5.254a25.02 25.02 0 0 1-3.234.501 24.674 24.674 0 0 1-2.051 2.545zM18.69 8.945l-.472-.119a23.479 23.479 0 0 0-3.787-.61l-.234-.02-.135-.193a23.414 23.414 0 0 0-2.421-2.967l-.34-.349.34-.349C14.135 1.778 16.515.767 18 1.622c1.512.872 1.812 3.37.824 6.855l-.134.468zM14.75 7.24c1.142.104 2.227.273 3.234.501.686-2.688.509-4.68-.485-5.253-.988-.571-2.845.304-4.8 2.208A24.849 24.849 0 0 1 14.75 7.24zM7.206 22.677A2.38 2.38 0 0 1 6 22.369c-1.512-.871-1.812-3.369-.823-6.854l.132-.468.472.119c1.155.291 2.429.496 3.785.609l.235.02.134.193a23.596 23.596 0 0 0 2.422 2.968l.34.349-.34.349c-1.898 1.95-3.728 3.023-5.151 3.023zm-1.19-6.427c-.686 2.688-.509 4.681.485 5.254.987.563 2.843-.305 4.8-2.208a24.998 24.998 0 0 1-2.052-2.545 24.976 24.976 0 0 1-3.233-.501zM12 16.878c-.823 0-1.669-.036-2.516-.106l-.235-.02-.135-.193a30.388 30.388 0 0 1-1.35-2.122 30.354 30.354 0 0 1-1.166-2.228l-.1-.213.1-.213a30.3 30.3 0 0 1 1.166-2.228c.414-.716.869-1.43 1.35-2.122l.135-.193.235-.02a29.785 29.785 0 0 1 5.033 0l.234.02.134.193a30.006 30.006 0 0 1 2.517 4.35l.101.213-.101.213a29.6 29.6 0 0 1-2.517 4.35l-.134.193-.234.02c-.847.07-1.694.106-2.517.106zm-2.197-1.084c1.48.111 2.914.111 4.395 0a29.006 29.006 0 0 0 2.196-3.798 28.585 28.585 0 0 0-2.197-3.798 29.031 29.031 0 0 0-4.394 0 28.477 28.477 0 0 0-2.197 3.798 29.114 29.114 0 0 0 2.197 3.798z"></path>
+              </svg>
+            </span>
+            <span class="ml-2">Adaptacja dla React</span>
+          </h3>
+          
+          <p class="text-gray-700 mb-6">
+            React używa składni JSX, która jest podobna do HTML, ale z pewnymi różnicami. Oto jak dostosować komponenty MaTail do użycia w React:
+          </p>
+          
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Główne różnice:</h4>
+          <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 mb-6">
+            <li>Zmiana <code>class</code> na <code>className</code></li>
+            <li>Zmiana atrybutów z kebab-case na camelCase (np. <code>data-item</code> pozostaje, ale <code>onclick</code> staje się <code>onClick</code>)</li>
+            <li>Zastąpienie zagnieżdżonych elementów HTML przez komponenty React</li>
+            <li>Implementacja interaktywności przez hooki React (useState, useEffect)</li>
+          </ul>
+          
+          <div class="bg-gray-50 rounded-lg border border-gray-200 p-4 mb-6">
+            <h4 class="font-medium text-gray-800 mb-2">Przykład konwersji prostego komponentu:</h4>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <h5 class="text-sm font-semibold text-gray-600 mb-2">Oryginalny HTML:</h5>
+                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs overflow-x-auto"><code>&lt;section id="cta-section" class="bg-blue-50 p-6"&gt;
+  &lt;div class="container mx-auto"&gt;
+    &lt;h2 class="text-2xl font-bold mb-4"&gt;
+      Dołącz do nas
+    &lt;/h2&gt;
+    &lt;p class="mb-6"&gt;Rozpocznij swoją podróż już dziś&lt;/p&gt;
+    &lt;button 
+      class="bg-blue-600 text-white px-4 py-2 rounded"
+      onclick="handleClick()"&gt;
+      Zarejestruj się
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+              </div>
+              
+              <div>
+                <h5 class="text-sm font-semibold text-gray-600 mb-2">React Component:</h5>
+                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs overflow-x-auto"><code>import React from 'react';
+
+const CTASection = () => {
+  const handleClick = () => {
+    // Obsługa kliknięcia
+    console.log('Clicked!');
+  };
+
+  return (
+    &lt;section id="cta-section" className="bg-blue-50 p-6"&gt;
+      &lt;div className="container mx-auto"&gt;
+        &lt;h2 className="text-2xl font-bold mb-4"&gt;
+          Dołącz do nas
+        &lt;/h2&gt;
+        &lt;p className="mb-6"&gt;
+          Rozpocznij swoją podróż już dziś
+        &lt;/p&gt;
+        &lt;button 
+          className="bg-blue-600 text-white px-4 py-2 rounded"
+          onClick={handleClick}&gt;
+          Zarejestruj się
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  );
+};
+
+export default CTASection;</code></pre>
+              </div>
+            </div>
+          </div>
+          
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Dodawanie interaktywności:</h4>
+          <p class="text-gray-700 mb-4">
+            W React zarządzamy stanem komponentu za pomocą hooków, takich jak useState i useEffect:
+          </p>
+          
+          <pre class="bg-gray-800 text-white p-3 rounded-md text-xs overflow-x-auto mb-6"><code>import React, { useState, useEffect } from 'react';
+
+const Testimonials = () => {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const testimonials = [
+    { author: "Jan Kowalski", text: "Świetna usługa!" },
+    { author: "Anna Nowak", text: "Polecam wszystkim." }
+  ];
+  
+  useEffect(() => {
+    // Automatyczne przełączanie slajdów co 5 sekund
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+  
+  return (
+    &lt;div className="testimonials-slider"&gt;
+      {testimonials.map((testimonial, index) => (
+        &lt;div
+          key={index}
+          className={`testimonial-slide ${index === activeSlide ? 'active' : ''}`}
+        &gt;
+          &lt;p&gt;{testimonial.text}&lt;/p&gt;
+          &lt;p className="author"&gt;{testimonial.author}&lt;/p&gt;
+        &lt;/div&gt;
+      ))}
+      
+      &lt;div className="controls"&gt;
+        {testimonials.map((_, index) => (
+          &lt;button
+            key={index}
+            className={`dot ${index === activeSlide ? 'active' : ''}`}
+            onClick={() => setActiveSlide(index)}
+          /&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default Testimonials;</code></pre>
+          
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Style w React:</h4>
+          <p class="text-gray-700 mb-4">
+            Istnieje kilka sposobów implementacji stylów CSS w React:
+          </p>
+          
+          <div class="space-y-4">
+            <div class="bg-white p-4 rounded-lg border border-gray-200">
+              <h5 class="font-medium text-gray-800 mb-2">1. Zewnętrzne pliki CSS</h5>
+              <p class="text-gray-700 text-sm">Importuj pliki CSS bezpośrednio w komponencie:</p>
+              <pre class="bg-gray-800 text-white p-2 rounded-md text-xs mt-2"><code>import './CTASection.css';</code></pre>
+            </div>
+            
+            <div class="bg-white p-4 rounded-lg border border-gray-200">
+              <h5 class="font-medium text-gray-800 mb-2">2. Moduły CSS</h5>
+              <p class="text-gray-700 text-sm">Używanie modułów CSS dla stylowania specyficznego dla komponentu:</p>
+              <pre class="bg-gray-800 text-white p-2 rounded-md text-xs mt-2"><code>import styles from './CTASection.module.css';
+
+// Użycie
+&lt;div className={styles.container}&gt;...&lt;/div&gt;</code></pre>
+            </div>
+            
+            <div class="bg-white p-4 rounded-lg border border-gray-200">
+              <h5 class="font-medium text-gray-800 mb-2">3. Tailwind CSS</h5>
+              <p class="text-gray-700 text-sm">Użycie klas Tailwind bezpośrednio w JSX (jak w oryginalnych komponentach MaTail):</p>
+              <pre class="bg-gray-800 text-white p-2 rounded-md text-xs mt-2"><code>&lt;button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition"&gt;
+  Kliknij mnie
+&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Vue Content -->
+        <div id="content-vue" class="tab-content hidden">
+          <h3 class="text-xl font-bold text-gray-800 mb-4">
+            <span class="inline-block align-middle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-green-600">
+                <path d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"></path>
+              </svg>
+            </span>
+            <span class="ml-2">Adaptacja dla Vue</span>
+          </h3>
+          
+          <p class="text-gray-700 mb-6">
+            Vue.js oferuje deklaratywny system szablonów, który jest bardzo zbliżony do standardowego HTML. Dzięki temu adaptacja komponentów MaTail do Vue jest stosunkowo prosta.
+          </p>
+          
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Główne różnice:</h4>
+          <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 mb-6">
+            <li>Użycie dyrektywy <code>v-bind</code> lub skróconej składni <code>:</code> do dynamicznego wiązania atrybutów</li>
+            <li>Użycie <code>v-on</code> lub skróconej składni <code>@</code> dla zdarzeń</li>
+            <li>Zastosowanie <code>v-for</code> do renderowania list</li>
+            <li>Użycie <code>v-if</code>, <code>v-else-if</code> i <code>v-else</code> do renderowania warunkowego</li>
+          </ul>
+          
+          <div class="bg-gray-50 rounded-lg border border-gray-200 p-4 mb-6">
+            <h4 class="font-medium text-gray-800 mb-2">Przykład konwersji prostego komponentu:</h4>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <h5 class="text-sm font-semibold text-gray-600 mb-2">Oryginalny HTML:</h5>
+                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs overflow-x-auto"><code>&lt;section id="cta-section" class="bg-blue-50 p-6"&gt;
+  &lt;div class="container mx-auto"&gt;
+    &lt;h2 class="text-2xl font-bold mb-4"&gt;
+      Dołącz do nas
+    &lt;/h2&gt;
+    &lt;p class="mb-6"&gt;Rozpocznij swoją podróż już dziś&lt;/p&gt;
+    &lt;button 
+      class="bg-blue-600 text-white px-4 py-2 rounded"
+      onclick="handleClick()"&gt;
+      Zarejestruj się
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+              </div>
+              
+              <div>
+                <h5 class="text-sm font-semibold text-gray-600 mb-2">Vue Component (Vue 3):</h5>
+                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs overflow-x-auto"><code>&lt;template&gt;
+  &lt;section id="cta-section" class="bg-blue-50 p-6"&gt;
+    &lt;div class="container mx-auto"&gt;
+      &lt;h2 class="text-2xl font-bold mb-4"&gt;
+        {{ title }}
+      &lt;/h2&gt;
+      &lt;p class="mb-6"&gt;{{ subtitle }}&lt;/p&gt;
+      &lt;button 
+        class="bg-blue-600 text-white px-4 py-2 rounded"
+        @click="handleClick"&gt;
+        {{ buttonText }}
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      title: 'Dołącz do nas',
+      subtitle: 'Rozpocznij swoją podróż już dziś',
+      buttonText: 'Zarejestruj się'
+    }
+  },
+  methods: {
+    handleClick() {
+      // Obsługa kliknięcia
+      console.log('Clicked!');
+    }
+  }
+}
+&lt;/script&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+          
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Dodawanie interaktywności:</h4>
+          <p class="text-gray-700 mb-4">
+            W Vue zarządzamy stanem komponentu za pomocą opcji <code>data</code> i metod w <code>methods</code>:
+          </p>
+          
+          <pre class="bg-gray-800 text-white p-3 rounded-md text-xs overflow-x-auto mb-6"><code>&lt;template&gt;
+  &lt;div class="testimonials-slider"&gt;
+    &lt;div 
+      v-for="(testimonial, index) in testimonials" 
+      :key="index"
+      :class="['testimonial-slide', { active: index === activeSlide }]"
+    &gt;
+      &lt;p&gt;{{ testimonial.text }}&lt;/p&gt;
+      &lt;p class="author"&gt;{{ testimonial.author }}&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="controls"&gt;
+      &lt;button
+        v-for="(_, index) in testimonials"
+        :key="'dot-' + index"
+        :class="['dot', { active: index === activeSlide }]"
+        @click="setActiveSlide(index)"
+      &gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data() {
+    return {
+      activeSlide: 0,
+      testimonials: [
+        { author: "Jan Kowalski", text: "Świetna usługa!" },
+        { author: "Anna Nowak", text: "Polecam wszystkim." }
+      ]
+    }
+  },
+  mounted() {
+    // Automatyczne przełączanie slajdów co 5 sekund
+    this.interval = setInterval(() => {
+      this.activeSlide = (this.activeSlide + 1) % this.testimonials.length;
+    }, 5000);
+  },
+  beforeUnmount() {
+    clearInterval(this.interval);
+  },
+  methods: {
+    setActiveSlide(index) {
+      this.activeSlide = index;
+    }
+  }
+}
+&lt;/script&gt;</code></pre>
+          
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Style w Vue:</h4>
+          <p class="text-gray-700 mb-4">
+            Vue pozwala na różne sposoby implementacji stylów CSS:
+          </p>
+          
+          <div class="space-y-4">
+            <div class="bg-white p-4 rounded-lg border border-gray-200">
+              <h5 class="font-medium text-gray-800 mb-2">1. Style w komponencie ze scoped</h5>
+              <p class="text-gray-700 text-sm">Dodaj sekcję <code>&lt;style scoped&gt;</code> do komponentu, aby style były ograniczone tylko do tego komponentu:</p>
+              <pre class="bg-gray-800 text-white p-2 rounded-md text-xs mt-2"><code>&lt;style scoped&gt;
+.testimonial-slide {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.testimonial-slide.active {
+  opacity: 1;
+}
+&lt;/style&gt;</code></pre>
+            </div>
+            
+            <div class="bg-white p-4 rounded-lg border border-gray-200">
+              <h5 class="font-medium text-gray-800 mb-2">2. Tailwind CSS</h5>
+              <p class="text-gray-700 text-sm">Użycie klas Tailwind bezpośrednio w szablonie (jak w oryginalnych komponentach MaTail):</p>
+              <pre class="bg-gray-800 text-white p-2 rounded-md text-xs mt-2"><code>&lt;button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition"&gt;
+  {{ buttonText }}
+&lt;/button&gt;</code></pre>
+            </div>
+            
+            <div class="bg-white p-4 rounded-lg border border-gray-200">
+              <h5 class="font-medium text-gray-800 mb-2">3. Dynamiczne style</h5>
+              <p class="text-gray-700 text-sm">Użycie v-bind dla dynamicznych stylów:</p>
+              <pre class="bg-gray-800 text-white p-2 rounded-md text-xs mt-2"><code>&lt;div :style="{ background: backgroundColor, color: textColor }"&gt;
+  Dynamicznie stylizowany element
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Angular Content -->
+        <div id="content-angular" class="tab-content hidden">
+          <h3 class="text-xl font-bold text-gray-800 mb-4">
+            <span class="inline-block align-middle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-red-600">
+                <path d="M9.93 12.645h4.134L11.996 7.74M11.996.009L.686 3.988l1.725 14.76 9.585 5.243 9.585-5.243 1.725-14.76L11.996.009zm7.058 18.297h-2.636l-1.42-3.501H8.995l-1.42 3.501H4.937l7.06-15.648 7.057 15.648z"/>
+              </svg>
+            </span>
+            <span class="ml-2">Adaptacja dla Angular</span>
+          </h3>
+          
+          <p class="text-gray-700 mb-6">
+            Angular używa systemu szablonów opartego na HTML z własnymi dyrektywami i składnią bindowania. Oto jak dostosować komponenty MaTail do Angular:
+          </p>
+          
+          <h4 class="text-lg font-semibold text-gray-800 mb-3">Główne różnice:</h4>
+          <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4 mb-6">
+            <li>Użycie interpolacji <code>{{ }}</code> do wyświetlania danych</li>
+            <li>Zastosowanie bindowania właściwości z nawiasami kwadratowymi <code>[property]="value"</code></li>
+            <li>Obsługa zdarzeń z nawiasami okrągłymi <code>(event)="handler()"</code></li>
+            <li>Użycie dyrektywy <code>*ngFor</code> do renderowania list</li>
+            <li>Użycie <code>*ngIf</code> do renderowania warunkowego</li>
+          </ul>
+          
+          <div class="bg-gray-50 rounded-lg border border-gray-200 p-4 mb-6">
+            <h4 class="font-medium text-gray-800 mb-2">Przykład konwersji prostego komponentu:</h4>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <h5 class="text-sm font-semibold text-gray-600 mb-2">Oryginalny HTML:</h5>
+                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs overflow-x-auto"><code>&lt;section id="cta-section" class="bg-blue-50 p-6"&gt;
+  &lt;div class="container mx-auto"&gt;
+    &lt;h2 class="text-2xl font-bold mb-4"&gt;
+      Dołącz do nas
+    &lt;/h2&gt;
+    &lt;p class="mb-6"&gt;Rozpocznij swoją podróż już dziś&lt;/p&gt;
+    &lt;button 
+      class="bg-blue-600 text-white px-4 py-2 rounded"
+      onclick="handleClick()"&gt;
+      Zarejestruj się
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+              </div>
+              
+              <div>
+                <h5 class="text-sm font-semibold text-gray-600 mb-2">Angular Component:</h5>
+                <pre class="bg-gray-800 text-white p-3 rounded-md text-xs overflow-x-auto"><code>&lt;!-- cta-section.component.html --&gt;
+&lt;section id="cta-section" class="bg-blue-50 p-6"&gt;
+  &lt;div class="container mx-auto"&gt;
+    &lt;h2 class="text-2xl font-bold mb-4"&gt;
+      {{ title }}
+    &lt;/h2&gt;
+    &lt;p class="mb-6"&gt;{{ subtitle }}&lt;/p&gt;
+    &lt;button 
+      class="bg-blue-600 text-white px-4 py-2 rounded"
+      (click)="handleClick()"&gt;
+      {{ buttonText }}
+    &lt;/button&gt;
