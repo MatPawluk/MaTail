@@ -3,8 +3,8 @@ import Layout from '../layouts/MainLayout.astro';
 ---
 
 <Layout>
-  <div slot="page-title">Dokumentacja MaTail</div>
-  <div slot="page-description">Pełna dokumentacja dotycząca instalacji, używania i dostosowywania komponentów</div>
+  <div slot="page-title">MaTailss</div>
+  <div slot="page-description">O projekcie</div>
   
   <div class="space-y-8">
     <!-- Nawigacja dokumentacji -->
@@ -34,111 +34,45 @@ import Layout from '../layouts/MainLayout.astro';
       
       <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm space-y-6">
         <div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">Czym jest MaTail?</h3>
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Czym jest MaTails?</h3>
           <p class="text-gray-700">
-            MaTail to biblioteka gotowych komponentów UI zbudowanych przy użyciu HTML i CSS z wykorzystaniem Tailwind CSS. 
-            Biblioteka została stworzona, aby przyspieszyć proces tworzenia stron internetowych, dostarczając gotowe, 
-            wysokiej jakości komponenty, które można łatwo zintegrować z dowolnym projektem.
+            MaTails to biblioteka gotowych komponentów UI zbudowanych w HTML i CSS.
+            Zacząłem ją robić dla siebie, żeby ułatwić sobie pracę przy tworzeniu stron.
+            Wyszło całkiem fajnie, więc pomyślałem — czemu by się tym nie podzielić?
+            A kto wie, może kiedyś uda się to nawet jakoś zmonetyzować (choć póki co nie mam na to pomysłu 😄).
           </p>
         </div>
         
         <div>
           <h3 class="text-xl font-semibold text-gray-800 mb-3">Wymagania</h3>
           <p class="text-gray-700 mb-4">
-            Komponenty MaTail są zbudowane głównie z HTML i CSS, więc mogą być używane w dowolnym projekcie. Jednak dla 
-            pełnej funkcjonalności zalecamy:
+            Komponenty MaTails są zbudowane głównie z HTML i CSS, więc mogą być używane w dowolnym projekcie. Jednak dla 
+            pełnej funkcjonalności zalecam:
           </p>
           <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
             <li>Podstawowa znajomość HTML i CSS</li>
             <li>Opcjonalnie: znajomość JavaScript dla komponentów interaktywnych</li>
-            <li>W przypadku korzystania z Tailwind CSS: Tailwind CSS w wersji 3.0 lub nowszej</li>
           </ul>
         </div>
         
         <div>
           <h3 class="text-xl font-semibold text-gray-800 mb-3">Instalacja</h3>
           <p class="text-gray-700 mb-4">
-            MaTail nie wymaga instalacji jako biblioteka. To kolekcja gotowych komponentów, które można kopiować 
+            MaTails nie wymaga instalacji jako biblioteka. To kolekcja gotowych komponentów, które można kopiować 
             i używać bezpośrednio w swoim projekcie.
           </p>
           <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-            <h4 class="font-medium text-gray-800 mb-2">Aby korzystać z MaTail:</h4>
+            <h4 class="font-medium text-gray-800 mb-2">Aby korzystać z MaTails:</h4>
             <ol class="list-decimal list-inside text-gray-700 space-y-2 ml-4">
               <li>Wybierz kategorię komponentów z menu bocznego</li>
               <li>Przeglądaj dostępne komponenty</li>
               <li>Kliknij przycisk "Kopiuj HTML", "Kopiuj CSS" lub "Kopiuj JS" dla wybranego komponentu</li>
               <li>Wklej skopiowany kod do swojego projektu</li>
+              <li>Dostosuj kod do swoich potrzeb</li>
+              <li>Gotowe! Twój komponent jest gotowy do użycia</li>
             </ol>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Sekcja jak używać -->
-    <section id="how-to-use" class="scroll-mt-20">
-      <div class="border-l-4 border-blue-500 pl-4 mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">Jak używać komponentów</h2>
-      </div>
-      
-      <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm space-y-6">
-        <div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">Podstawowe użycie</h3>
-          <p class="text-gray-700 mb-4">
-            Każdy komponent MaTail składa się z trzech części: HTML, CSS i opcjonalnie JavaScript. Aby użyć komponentu:
-          </p>
-          <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-4">
-            <div>
-              <h4 class="font-medium text-gray-800 mb-2">1. Skopiuj kod HTML</h4>
-              <p class="text-gray-700">
-                Kod HTML definiuje strukturę komponentu. Skopiuj go i wklej do pliku HTML Twojego projektu.
-              </p>
-            </div>
-            <div>
-              <h4 class="font-medium text-gray-800 mb-2">2. Skopiuj kod CSS</h4>
-              <p class="text-gray-700">
-                Kod CSS definiuje style komponentu. Skopiuj go i wklej do pliku CSS Twojego projektu lub użyj tagu &lt;style&gt;.
-              </p>
-            </div>
-            <div>
-              <h4 class="font-medium text-gray-800 mb-2">3. Skopiuj kod JavaScript (jeśli dostępny)</h4>
-              <p class="text-gray-700">
-                Niektóre komponenty zawierają JavaScript dla dodatkowej funkcjonalności. Skopiuj go i wklej do pliku JS 
-                lub użyj tagu &lt;script&gt;.
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">Integracja z projektem</h3>
-          <p class="text-gray-700 mb-4">
-            Komponenty MaTail można zintegrować z różnymi typami projektów:
-          </p>
-          <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-4">
-            <div>
-              <h4 class="font-medium text-gray-800 mb-2">Czysty HTML/CSS/JS</h4>
-              <p class="text-gray-700">
-                Skopiuj kod HTML, CSS i JS do odpowiednich plików w Twoim projekcie. Upewnij się, że w pliku HTML jest 
-                link do pliku CSS i JS.
-              </p>
-            </div>
-            <div>
-              <h4 class="font-medium text-gray-800 mb-2">Projekt z Tailwind CSS</h4>
-              <p class="text-gray-700">
-                Jeśli Twój projekt już używa Tailwind CSS, możesz użyć tylko kodu HTML, ponieważ style Tailwind są już 
-                zdefiniowane w Twoim projekcie. Dodatkowe style CSS nadal będą potrzebne.
-              </p>
-            </div>
-            <div>
-              <h4 class="font-medium text-gray-800 mb-2">Framework JavaScript (React, Vue, Angular, itp.)</h4>
-              <p class="text-gray-700">
-                Dostosuj kod HTML do składni Twojego frameworka. Na przykład, w React zmień nazwy atrybutów class na className. 
-                CSS może być importowany jako moduł lub dodany do globalnych stylów.
-              </p>
-            </div>
-          </div>
-        </div>
-        
         <div>
           <h3 class="text-xl font-semibold text-gray-800 mb-3">Przykład implementacji</h3>
           <div class="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto text-sm font-mono">
@@ -166,155 +100,93 @@ import Layout from '../layouts/MainLayout.astro';
           </div>
         </div>
       </div>
+      </div>
+      
     </section>
 
+
+
     <!-- Sekcja dostosowywania -->
-    <section id="customization" class="scroll-mt-20">
+    <section id="customization" class="scroll-mt-20 mt-10">
       <div class="border-l-4 border-blue-500 pl-4 mb-6">
         <h2 class="text-2xl font-bold text-gray-800">Dostosowywanie komponentów</h2>
       </div>
-      
+    
       <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm space-y-6">
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Łatwiejsza edycja dzięki :root</h3>
+          <p class="text-gray-700 mb-4">
+            W planach jest dodanie głównego bloku <code>:root</code> z zestawem zmiennych CSS — kolory, marginesy, zaokrąglenia itp.  
+            Dzięki temu zmiana wyglądu całych komponentów będzie jeszcze szybsza i wygodniejsza.  
+            Na razie wszystko edytuje się bezpośrednio w kodzie, ale niedługo będzie prościej!
+          </p>
+          <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <pre class="text-sm text-gray-800 overflow-x-auto"><code>{`:root {
+      --color-primary: #3b82f6;
+      --color-secondary: #6366f1;
+      --radius-base: 0.5rem;
+      --spacing-md: 1rem;
+      /* itd. */
+    }`}</code></pre>
+          </div>
+        </div>
+    
         <div>
           <h3 class="text-xl font-semibold text-gray-800 mb-3">Zmiana wyglądu</h3>
           <p class="text-gray-700 mb-4">
-            Wszystkie komponenty MaTail można łatwo dostosować do własnych potrzeb, modyfikując kod HTML i CSS:
+            Możesz dostosować każdy komponent, edytując kod HTML i CSS.  
+            Ale jeśli wolisz, klasy Tailwind też są w pełni edytowalne.
           </p>
           <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-4">
             <div>
               <h4 class="font-medium text-gray-800 mb-2">Modyfikacja kolorów</h4>
               <p class="text-gray-700">
-                Zmień kolory, modyfikując odpowiednie wartości w kodzie CSS. Szukaj zmiennych CSS lub bezpośrednich definicji kolorów (np. #3b82f6, rgb(59, 130, 246)). Jeśli używasz Tailwind CSS, możesz też zmienić klasy kolorów w HTML.
+                Edytuj CSS w kodzie komponentu w miejscach, gdzie są używane kolory.
               </p>
             </div>
             <div>
               <h4 class="font-medium text-gray-800 mb-2">Zmiana układu</h4>
               <p class="text-gray-700">
-                Modyfikuj rozmieszczenie elementów, zmieniając właściwości display, flex, grid, padding, margin itp. w CSS. 
-                Możesz też zmieniać strukturę HTML, dodając lub usuwając elementy.
+                Przearanżuj komponenty, zmieniając klasy <code>flex</code>, <code>grid</code>, marginesy, paddingi itp.  
+                Struktura jest na tyle prosta, że nie powinno być problemów.
               </p>
             </div>
             <div>
               <h4 class="font-medium text-gray-800 mb-2">Dodawanie/usuwanie elementów</h4>
               <p class="text-gray-700">
-                Dodawaj lub usuwaj części komponentów, modyfikując strukturę HTML. Upewnij się, że dostosowujesz również 
-                odpowiednie style CSS.
+                Komponenty możesz spokojnie rozbudowywać lub upraszczać — wystarczy edytować HTML i ewentualnie CSS.
               </p>
             </div>
           </div>
         </div>
-        
+    
         <div>
           <h3 class="text-xl font-semibold text-gray-800 mb-3">Dostosowywanie funkcjonalności</h3>
           <p class="text-gray-700 mb-4">
-            Dla komponentów zawierających JavaScript, możesz dostosować ich funkcjonalność:
+            Jeśli komponent zawiera JavaScript, to też bez problemu możesz go modyfikować.
           </p>
           <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 space-y-4">
             <div>
               <h4 class="font-medium text-gray-800 mb-2">Modyfikacja zachowania</h4>
               <p class="text-gray-700">
-                Zmodyfikuj kod JavaScript, aby zmienić sposób działania komponentu, np. prędkość animacji, obsługę zdarzeń itp.
+                Zmieniaj animacje, zdarzenia, opóźnienia — wystarczy trochę podłubać w JS.
               </p>
             </div>
             <div>
               <h4 class="font-medium text-gray-800 mb-2">Dodawanie nowych funkcji</h4>
               <p class="text-gray-700">
-                Rozszerz funkcjonalność komponentu, dodając nowe funkcje JavaScript lub integrując z innymi bibliotekami.
+                Masz pomysł na dodatkową funkcję? Śmiało — napisz do mnie.
               </p>
             </div>
           </div>
         </div>
+    
         
-        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
-          <div class="flex items-start gap-2">
-            <svg class="text-blue-600 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="16" x2="12" y2="12"></line>
-              <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg>
-            <div>
-              <h4 class="font-medium text-blue-800 mb-1">Wskazówka</h4>
-              <p class="text-blue-700">
-                Każdy komponent został zaprojektowany z myślą o elastyczności. Możesz swobodnie modyfikować kod, 
-                aby dostosować go do swoich potrzeb. Zachowaj jednak oryginalną strukturę klas, aby uniknąć problemów 
-                z działaniem komponentu.
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
-    </section>
-
-    <!-- Sekcja struktury projektu -->
-    <section id="structure" class="scroll-mt-20">
-      <div class="border-l-4 border-blue-500 pl-4 mb-6">
-        <h2 class="text-2xl font-bold text-gray-800">Struktura projektu</h2>
-      </div>
-      
-      <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm space-y-6">
-        <p class="text-gray-700">
-          MaTail został zbudowany przy użyciu Astro i Tailwind CSS. Główne części projektu to:
-        </p>
-        
-        <div class="overflow-x-auto">
-          <table class="min-w-full bg-white border border-gray-200">
-            <thead>
-              <tr class="bg-gray-50">
-                <th class="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">Katalog/Plik</th>
-                <th class="py-2 px-4 border-b text-left text-sm font-medium text-gray-700">Opis</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-              <tr>
-                <td class="py-2 px-4 text-sm font-mono text-gray-600">src/components/</td>
-                <td class="py-2 px-4 text-sm text-gray-700">Komponenty Astro używane w projekcie</td>
-              </tr>
-              <tr>
-                <td class="py-2 px-4 text-sm font-mono text-gray-600">src/data/</td>
-                <td class="py-2 px-4 text-sm text-gray-700">Pliki JSON zawierające dane komponentów (HTML, CSS, JS)</td>
-              </tr>
-              <tr>
-                <td class="py-2 px-4 text-sm font-mono text-gray-600">src/layouts/</td>
-                <td class="py-2 px-4 text-sm text-gray-700">Układy stron używane w projekcie</td>
-              </tr>
-              <tr>
-                <td class="py-2 px-4 text-sm font-mono text-gray-600">src/pages/</td>
-                <td class="py-2 px-4 text-sm text-gray-700">Strony projektu, każda kategoria ma swoją stronę</td>
-              </tr>
-              <tr>
-                <td class="py-2 px-4 text-sm font-mono text-gray-600">src/styles/</td>
-                <td class="py-2 px-4 text-sm text-gray-700">Globalne style CSS</td>
-              </tr>
-              <tr>
-                <td class="py-2 px-4 text-sm font-mono text-gray-600">public/</td>
-                <td class="py-2 px-4 text-sm text-gray-700">Statyczne pliki (obrazy, skrypty JS)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        
-        <div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">Organizacja komponentów</h3>
-          <p class="text-gray-700 mb-4">
-            Komponenty są zorganizowane według kategorii:
-          </p>
-          <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
-            <li><strong>Hero</strong> - Sekcje nagłówkowe strony</li>
-            <li><strong>CTA</strong> - Wezwania do działania</li>
-            <li><strong>Services</strong> - Sekcje usług i funkcji</li>
-            <li><strong>Testimonials</strong> - Referencje i opinie</li>
-            <li><strong>Features</strong> - Funkcje i zalety (w przygotowaniu)</li>
-            <li><strong>Pricing</strong> - Plany cenowe (w przygotowaniu)</li>
-            <li><strong>FAQ</strong> - Najczęściej zadawane pytania (w przygotowaniu)</li>
-            <li><strong>Contact</strong> - Formularze kontaktowe (w przygotowaniu)</li>
-            <li><strong>Footer</strong> - Stopki stron (w przygotowaniu)</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    </section>    
 
     <!-- Sekcja FAQ -->
-    <section id="faq" class="scroll-mt-20">
+    <section id="faq" class="scroll-mt-20 mt-10">
       <div class="border-l-4 border-blue-500 pl-4 mb-6">
         <h2 class="text-2xl font-bold text-gray-800">Często zadawane pytania</h2>
       </div>
@@ -325,20 +197,22 @@ import Layout from '../layouts/MainLayout.astro';
           
           <div class="space-y-6">
             <div class="border-b border-gray-200 pb-4">
-              <h4 class="font-medium text-gray-800 mb-2">Czy MaTail jest darmowy?</h4>
+              <h4 class="font-medium text-gray-800 mb-2">Czy MaTails jest darmowy?</h4>
               <p class="text-gray-700">
-                Tak, obecna wersja MaTail jest całkowicie darmowa i open source. Możesz używać komponentów w dowolnym projekcie, 
+                Tak, obecna wersja MaTails jest całkowicie darmowa. Możesz używać komponentów w dowolnym projekcie, 
                 zarówno komercyjnym, jak i niekomercyjnym.
               </p>
             </div>
             
             <div class="border-b border-gray-200 pb-4">
-              <h4 class="font-medium text-gray-800 mb-2">Czy potrzebuję Tailwind CSS, aby używać tych komponentów?</h4>
+              <h4 class="font-medium text-gray-800 mb-2">Czy potrzebuję Tailwind CSS albo Bootstrap, aby używać tych komponentów?</h4>
               <p class="text-gray-700">
-                Nie, nie jest to wymagane. Komponenty zawierają wszystkie potrzebne style CSS. Jednak jeśli już używasz 
-                Tailwind CSS w swoim projekcie, kompatybilność będzie bezproblemowa.
+                Nie, nie jest to wymagane. Komponenty zawierają wszystkie niezbędne style CSS i działają samodzielnie.  
+                Jeśli jednak korzystasz już z Tailwind CSS, Bootstrap lub innej biblioteki — integracja nie powinna sprawiać problemów,  
+                o ile nie wystąpi konflikt nazw klas (a nie powinien). W razie potrzeby możesz łatwo dostosować kod do swojego środowiska.
               </p>
             </div>
+            
             
             <div class="border-b border-gray-200 pb-4">
               <h4 class="font-medium text-gray-800 mb-2">Czy mogę używać tych komponentów z frameworkami JavaScript?</h4>
@@ -351,24 +225,23 @@ import Layout from '../layouts/MainLayout.astro';
             <div class="border-b border-gray-200 pb-4">
               <h4 class="font-medium text-gray-800 mb-2">Jak często dodawane są nowe komponenty?</h4>
               <p class="text-gray-700">
-                Regularnie dodajemy nowe komponenty do biblioteki. Planujemy również rozszerzenie o komponenty dla frameworków 
-                takich jak Vue i React w przyszłości.
+                Regularnie dodaje nowe komponenty do biblioteki. Planuje również rozszerzenie o komponenty dla frameworków 
+                takich jak Vue i Astro w przyszłości.
               </p>
             </div>
             
             <div class="border-b border-gray-200 pb-4">
               <h4 class="font-medium text-gray-800 mb-2">Jak mogę zgłosić błąd lub zaproponować nowy komponent?</h4>
               <p class="text-gray-700">
-                Możesz zgłosić błąd lub zaproponować nowy komponent poprzez GitHub Issues w naszym repozytorium. 
-                Jesteśmy otwarci na sugestie i wszelkie formy współpracy!
+                Możesz zgłosić błąd lub zaproponować nowy komponent poprzez maila lub otwierając zgłoszenie na stronie.
+                Jestem otwarty na sugestie!
               </p>
             </div>
             
             <div>
               <h4 class="font-medium text-gray-800 mb-2">Czy będą komponenty dla frameworków jak Vue czy React?</h4>
               <p class="text-gray-700">
-                Tak, planujemy w przyszłości dodać gotowe komponenty dla Vue i React. Będą one dostępne jako oddzielne 
-                biblioteki, potencjalnie na zasadach komercyjnych.
+                Tak, planuje w przyszłości dodać gotowe komponenty dla Vue i React.
               </p>
             </div>
           </div>
@@ -384,23 +257,13 @@ import Layout from '../layouts/MainLayout.astro';
       
       <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
         <p class="text-gray-700 mb-6">
-          Masz pytania, sugestie lub potrzebujesz pomocy? Skontaktuj się z nami:
+          Masz pytania, sugestie lub potrzebujesz pomocy? Skontaktuj się ze mną:
         </p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <a href="https://github.com/MatPawluk/MaTail/issues" target="_blank" rel="noopener noreferrer" class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200">
-            <div class="bg-gray-200 rounded-full p-3 mr-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-700">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-medium text-gray-800">GitHub Issues</h3>
-              <p class="text-gray-600 text-sm">Zgłoś błąd lub zaproponuj funkcję</p>
-            </div>
-          </a>
           
-          <a href="mailto:kontakt@example.com" class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200">
+          
+          <a href="mailto:pawluk1988@icloud.com" class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200">
             <div class="bg-gray-200 rounded-full p-3 mr-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-700">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -409,7 +272,7 @@ import Layout from '../layouts/MainLayout.astro';
             </div>
             <div>
               <h3 class="font-medium text-gray-800">Email</h3>
-              <p class="text-gray-600 text-sm">Napisz do nas bezpośrednio</p>
+              <p class="text-gray-600 text-sm">Napisz do mnie bezpośrednio</p>
             </div>
           </a>
         </div>
@@ -424,7 +287,7 @@ import Layout from '../layouts/MainLayout.astro';
       
       <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
         <p class="text-gray-700 mb-6">
-          MaTail jest aktywnie rozwijany. Oto niektóre z planowanych funkcji i ulepszeń:
+          MaTails jest aktywnie rozwijany. Oto niektóre z planowanych funkcji i ulepszeń:
         </p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
