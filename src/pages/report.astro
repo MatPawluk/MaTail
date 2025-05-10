@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/MainLayout.astro';
+---
+
+<Layout>
+  <div slot="page-title">Zgłoś problem lub propozycję</div>
+  <div slot="page-description">Zgłoś błąd, zaproponuj nowy komponent lub podziel się opinią</div>
+  
+  <div class="space-y-8">
+    <div class="bg-white p-6 md:p-8 rounded-lg border border-gray-200 shadow-sm">
+      <div class="mx-auto">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Formularz zgłoszeniowy</h2>
+        
+        <p class="text-gray-600 mb-8">
+          Chcesz zgłosić błąd? Masz pomysł na nowy komponent? A może po prostu chcesz się podzielić swoją opinią?
+          Wypełnij poniższy formularz, a ja postaram się odpowiedzieć jak najszybciej! 👍
+        </p>
+        
+        <!-- Formularz Netlify z ochroną przed botami -->
+        <form 
+          name="contact" 
+          method="POST" 
+          data-netlify="true" 
+          data-netlify-honeypot="bot-field"
+          netlify-recaptcha
+          class="space-y-6">
+          
+          <!-- Ukryte pole pułapka na boty -->
+          <p class="hidden">
+            <label>
+              Nie wypełniaj tego pola jeśli jesteś człowiekiem: <input name="bot-field" />
+            </label>
+          </p>
+          
+          <!-- Typ zgłoszenia -->
+          <div>
+            <label for="report-type" class="block text-sm font-medium text-gray-700 mb-1">Typ zgłoszenia</label>
+            <select id="report-type" name="report-type" required class="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+              <option value="" disabled selected>Wybierz typ zgłoszenia</option>
+              <option value="bug">Zgłoszenie błędu</option>
+              <option value="feature">Propozycja nowego komponentu</option>
+              <option value="improvement">Propozycja ulepszenia</option>
+              <option value="question">Pytanie</option>
+              <option value="other">Inne</option>
+            </select>
+          </div>
+          
+          <!-- Imię -->
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Imię</label>
+            <input type="text" id="name" name="name" placeholder="Twoje imię" class="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+          </div>
+          
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email <span class="text-red-600">*</span></label>
+            <input type="email" id="email" name="email" placeholder="Twój adres email" required class="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <p class="mt-1 text-sm text-gray-500">Potrzebny do udzielenia odpowiedzi</p>
+          </div>
+          
+          <!-- Tytuł zgłoszenia -->
+          <div>
+            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Tytuł zgłoszenia <span class="text-red-600">*</span></label>
+            <input type="text" id="subject" name="subject" placeholder="Krótki opis zgłoszenia" required class="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+          </div>
+          
+          <!-- Treść zgłoszenia -->
+          <div>
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Treść zgłoszenia <span class="text-red-600">*</span></label>
+            <textarea id="message" name="message" rows="6" placeholder="Szczegółowy opis Twojego zgłoszenia..." required class="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+          </div>
+          
+          <!-- reCAPTCHA -->
+          <div data-netlify-recaptcha="true"></div>
+          
+          <!-- Zgoda na przetwarzanie danych -->
+          <div class="flex items-start">
+            <div class="flex items-center h-5">
+              <input id="privacy" name="privacy" type="checkbox" required class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+            </div>
+            <div class="ml-3 text-sm">
+              <label for="privacy" class="font-medium text-gray-700">Zgoda na przetwarzanie danych <span class="text-red-600">*</span></label>
+              <p class="text-gray-500">Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w formularzu zgodnie z <a href="/privacy-policy" class="text-blue-600 hover:underline">polityką prywatności</a>.</p>
+            </div>
+          </div>
+          
+          <!-- Przycisk wysyłania -->
+          <div>
+            <button type="submit" class="w-full md:w-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+              </svg>
+              Wyślij zgłoszenie
+            </button>
+          </div>
+        </form>
+        
+        <!-- Informacja o przetwarzaniu danych -->
+        <div class="mt-8 p-4 bg-blue-50 rounded-lg text-sm text-gray-600">
+          <p class="mb-2">
+            <strong>Informacja o przetwarzaniu danych:</strong>
+          </p>
+          <p>
+            Administratorem Twoich danych osobowych jest Mateusz Pawluk. Dane będą przetwarzane wyłącznie w celu 
+            udzielenia odpowiedzi na Twoje zgłoszenie. Więcej informacji znajdziesz w 
+            <a href="/privacy-policy" class="text-blue-600 hover:underline">polityce prywatności</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

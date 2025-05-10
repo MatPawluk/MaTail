@@ -257,13 +257,12 @@ import Layout from '../layouts/MainLayout.astro';
       
       <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
         <p class="text-gray-700 mb-6">
-          Masz pytania, sugestie lub potrzebujesz pomocy? Skontaktuj się ze mną:
+          Masz pytania, sugestie lub potrzebujesz pomocy? Skorzystaj z jednej z poniższych opcji:
         </p>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          
-          <a href="mailto:pawluk1988@icloud.com" class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200">
+          <!-- Email kontaktowy -->
+          <a href="mailto:pawluk1988@icloud.com" class="flex items-center p-5 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border border-gray-200 h-full">
             <div class="bg-gray-200 rounded-full p-3 mr-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-700">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -271,10 +270,46 @@ import Layout from '../layouts/MainLayout.astro';
               </svg>
             </div>
             <div>
-              <h3 class="font-medium text-gray-800">Email</h3>
-              <p class="text-gray-600 text-sm">Napisz do mnie bezpośrednio</p>
+              <h3 class="font-medium text-gray-800 mb-1">Email</h3>
+              <p class="text-gray-600 text-sm">Napisz do mnie bezpośrednio na adres pawluk1988@icloud.com</p>
             </div>
           </a>
+          
+          <!-- Formularz zgłoszeniowy -->
+          <a href="/report" class="flex items-center p-5 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors border border-blue-200 h-full">
+            <div class="bg-blue-100 rounded-full p-3 mr-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-medium text-gray-800 mb-1">Formularz zgłoszeniowy</h3>
+              <p class="text-gray-600 text-sm">Zgłoś błąd, zaproponuj nowy komponent lub podziel się opinią</p>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Dodatkowa informacja o pomocy -->
+        <div class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <div class="md:flex-1">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">Potrzebujesz dodatkowej pomocy?</h3>
+              <p class="text-gray-600">
+                Jeśli potrzebujesz indywidualnego wsparcia przy implementacji komponentów lub masz pomysł na współpracę, 
+                jestem otwarty na rozmowę. Wspólnie znajdziemy najlepsze rozwiązanie!
+              </p>
+            </div>
+            <div class="flex-shrink-0">
+              <a href="/report" class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md flex items-center whitespace-nowrap">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
+                  <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
+                </svg>
+                Skontaktuj się
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -308,7 +343,7 @@ import Layout from '../layouts/MainLayout.astro';
             </svg>
             <div>
               <h3 class="font-medium text-gray-800 mb-1">Komponenty dla frameworków</h3>
-              <p class="text-gray-700 text-sm">Wersje komponentów dedykowane dla React, Vue i innych popularnych frameworków.</p>
+              <p class="text-gray-700 text-sm">Wersje komponentów dedykowane dla React, Vue, Astro</p>
             </div>
           </div>
           

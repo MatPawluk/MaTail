@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/MainLayout.astro';
+---
+
+<Layout>
+	<div slot="page-title">Regulamin użytkowania</div>
+	<div slot="page-description">Zasady korzystania z serwisu MaTails</div>
+
+	<div class="space-y-8">
+		<div class="bg-white p-6 md:p-8 rounded-lg border border-gray-200 shadow-sm">
+			<div class="mx-auto">
+				<div class="prose prose-blue max-w-none">
+					<h2>Regulamin użytkowania MaTails</h2>
+					<p>
+						<em
+							>Ostatnia aktualizacja: {
+								new Date().toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })
+							}</em>
+					</p>
+
+					<h3>1. Informacje ogólne</h3>
+					<p>
+						Niniejszy regulamin określa zasady korzystania z serwisu internetowego MaTails, dostępnego pod adresem
+						matails.pl. Operatorem serwisu jest Mateusz Pawluk, prowadzący działalność jako osoba prywatna.
+					</p>
+					<p>Korzystanie z serwisu oznacza akceptację niniejszego regulaminu w całości.</p>
+
+					<h3>2. Definicje</h3>
+					<p>Użyte w regulaminie pojęcia oznaczają:</p>
+					<ul>
+						<li><strong>Serwis</strong> - strona internetowa MaTails dostępna pod adresem matails.pl</li>
+						<li><strong>Operator</strong> - Mateusz Pawluk, będący właścicielem Serwisu</li>
+						<li><strong>Użytkownik</strong> - osoba korzystająca z zasobów Serwisu</li>
+						<li>
+							<strong>Komponent</strong> - element interfejsu użytkownika dostępny w ramach Serwisu, obejmujący kod HTML,
+							CSS i/lub JavaScript
+						</li>
+					</ul>
+
+					<h3>3. Prawa własności intelektualnej</h3>
+					<p>
+						Wszystkie materiały, w tym komponenty UI, kod źródłowy, grafiki, teksty i inne elementy dostępne w Serwisie
+						są własnością Operatora lub zostały użyte za zgodą ich właścicieli.
+					</p>
+					<p>
+						Obecnie wszystkie komponenty dostępne w Serwisie są udostępniane w wersji darmowej, z zastrzeżeniem
+						możliwości wprowadzenia w przyszłości wersji płatnych.
+					</p>
+
+					<h3>4. Zasady korzystania z komponentów</h3>
+					<p>Użytkownik ma prawo do:</p>
+					<ul>
+						<li>Przeglądania i kopiowania komponentów dostępnych w Serwisie</li>
+						<li>Wykorzystywania komponentów w projektach prywatnych i komercyjnych</li>
+						<li>Modyfikowania komponentów według własnych potrzeb</li>
+						<li>Udostępniania komponentów w ramach tworzonych przez siebie projektów</li>
+					</ul>
+
+					<p>Użytkownik nie może:</p>
+					<ul>
+						<li>Rozpowszechniać komponentów jako własnych produktów lub bibliotek</li>
+						<li>Sprzedawać niemodyfikowanych komponentów jako samodzielnych produktów</li>
+						<li>Działać w sposób naruszający prawa Operatora</li>
+						<li>Używać komponentów w sposób naruszający prawo lub dobre obyczaje</li>
+					</ul>
+
+					<h3>5. Atrybucja</h3>
+					<p>
+						Chociaż nie jest to wymagane, doceniamy, gdy Użytkownicy umieszczają informację o źródle pochodzenia
+						komponentów. Możesz to zrobić poprzez dodanie prostej informacji w kodzie lub dokumentacji projektu, np.:
+						"Komponenty UI z MaTails (matails.pl)".
+					</p>
+
+					<h3>6. Zakres odpowiedzialności</h3>
+					<p>
+						Komponenty są dostarczane w stanie "tak jak są", bez jakichkolwiek gwarancji. Operator nie ponosi
+						odpowiedzialności za:
+					</p>
+					<ul>
+						<li>Problemy wynikające z wykorzystania komponentów</li>
+						<li>Szkody powstałe w wyniku nieprawidłowego działania komponentów</li>
+						<li>Brak dostępności Serwisu</li>
+						<li>Zgodność komponentów z oczekiwaniami Użytkownika</li>
+					</ul>
+
+					<h3>7. Zmiany regulaminu</h3>
+					<p>
+						Operator zastrzega sobie prawo do wprowadzania zmian w regulaminie. O wszelkich zmianach Użytkownicy będą
+						informowani poprzez zamieszczenie zaktualizowanej wersji regulaminu na stronie Serwisu.
+					</p>
+
+					<h3>8. Postanowienia końcowe</h3>
+					<p>
+						W sprawach nieuregulowanych niniejszym regulaminem mają zastosowanie przepisy prawa polskiego, w
+						szczególności Kodeksu Cywilnego, Ustawy o prawach konsumenta oraz Ustawy o świadczeniu usług drogą
+						elektroniczną.
+					</p>
+					<p>
+						W przypadku pytań lub wątpliwości dotyczących regulaminu, prosimy o kontakt pod adresem
+						<a href="mailto:pawluk1988@icloud.com">pawluk1988@icloud.com</a>.
+					</p>
+
+					<h3>9. Przyszłe zmiany w modelu dostępu</h3>
+					<p>
+						Operator zastrzega sobie możliwość wprowadzenia w przyszłości płatnych wersji komponentów lub usług. W takim
+						przypadku:
+					</p>
+					<ul>
+						<li>Użytkownicy zostaną poinformowani o zmianach z odpowiednim wyprzedzeniem</li>
+						<li>Komponenty, które były darmowe przed wprowadzeniem zmian, pozostaną darmowe</li>
+						<li>Zostanie wprowadzony osobny regulamin określający zasady korzystania z płatnych treści</li>
+					</ul>
+
+					<hr class="my-8" />
+
+					<p class="text-gray-500 text-sm">
+						Dziękujemy za korzystanie z MaTails. Mamy nadzieję, że nasze komponenty będą pomocne w Twoich projektach!
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>

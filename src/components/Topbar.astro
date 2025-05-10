@@ -1,5 +1,4 @@
 ---
-// src/components/Topbar.astro - Improved responsive design
 import { Image } from 'astro:assets';
 import Logo from '../assets/logo.svg';
 ---
@@ -40,79 +39,151 @@ import Logo from '../assets/logo.svg';
 		</div>
 
 		<div class="flex items-center gap-4">
-			<div class="hidden md:flex">
-				<a
-					href="https://github.com/MatPawluk/MaTail"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center gap-2">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						aria-hidden="true">
-						<path
-							d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-						></path>
-					</svg>
-					<span>GitHub</span>
-				</a>
-			</div>
-
-			<!-- Mobile dropdown menu -->
-			<div class="relative md:hidden">
-				<button
-					type="button"
-					id="mobile-menu-button"
-					class="flex items-center justify-center p-2 rounded-full text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-200"
-					aria-expanded="false"
-					aria-haspopup="menu">
-					<span class="sr-only">Open menu</span>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="20"
-						height="20"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round">
-						<circle cx="12" cy="12" r="1"></circle>
-						<circle cx="19" cy="12" r="1"></circle>
-						<circle cx="5" cy="12" r="1"></circle>
-					</svg>
-				</button>
-
-				<div
-					id="mobile-dropdown"
-					class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-50 border border-gray-200">
-					<a
-						href="https://github.com/MatPawluk/MaTail"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-						GitHub
-					</a>
-					<a href="#documentation" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Dokumentacja </a>
-				</div>
-			</div>
-
-			<div class="relative">
-				<button
-					type="button"
-					class="flex text-sm bg-gray-100 rounded-full focus:ring-4 focus:ring-gray-200"
-					aria-label="User profile">
-					<div class="w-8 h-8 rounded-full flex items-center justify-center bg-blue-600 text-white text-xs">MP</div>
-				</button>
-			</div>
-		</div>
+            <div class="hidden md:flex space-x-1">
+              <!-- GitHub -->
+              <a
+                href="https://github.com/MatPawluk/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true">
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                  ></path>
+                </svg>
+                <span>GitHub</span>
+              </a>
+              
+              <!-- LinkedIn -->
+              <a
+                href="https://www.linkedin.com/in/mateusz-pawluk-513368271/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+              
+              <!-- Strona osobista -->
+              <a
+                href="https://pawlukstudio.pl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                <span>pawlukstudio.pl</span>
+              </a>
+            </div>
+          
+            <!-- Mobile dropdown menu -->
+            <div class="relative md:hidden">
+              <button
+                type="button"
+                id="mobile-menu-button"
+                class="flex items-center justify-center p-2 rounded-full text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                aria-expanded="false"
+                aria-haspopup="menu">
+                <span class="sr-only">Open menu</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="1"></circle>
+                  <circle cx="19" cy="12" r="1"></circle>
+                  <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+              </button>
+          
+              <div
+                id="mobile-dropdown"
+                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-50 border border-gray-200">
+                <!-- GitHub -->
+                <a
+                  href="https://github.com/MatPawluk/MaTail"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  GitHub
+                </a>
+                
+                <!-- LinkedIn -->
+                <a
+                  href="https://www.linkedin.com/in/mateusz-pawluk-513368271/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  LinkedIn
+                </a>
+                
+                <!-- Strona osobista -->
+                <a
+                  href="https://pawlukstudio.pl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  pawlukstudio.pl
+                </a>
+                
+                <!-- info -->
+                <a href="/docs" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  Info
+                </a>
+              </div>
+            </div>
+          
+            <div class="relative">
+              <button
+                type="button"
+                class="flex text-sm bg-gray-100 rounded-full focus:ring-4 focus:ring-gray-200"
+                aria-label="User profile">
+                <div class="w-8 h-8 rounded-full flex items-center justify-center bg-blue-600 text-white text-xs">MP</div>
+              </button>
+            </div>
+          </div>
 	</div>
 </header>
 
