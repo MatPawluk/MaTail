@@ -1,4 +1,5 @@
 ---
+// src/components/Sidebar.astro - Completely fixed version
 const navigation = [
 	{ href: '/', label: 'Start', icon: 'home' },
 	{ href: '/hero', label: 'Hero', icon: 'layout' },
@@ -14,14 +15,15 @@ const navigation = [
 const { pathname } = Astro.url;
 ---
 
-<!-- Overlay dla tła przy otwartym menu na urządzeniach mobilnych -->
+<!-- Overlay for background when menu is open on mobile devices -->
 <div id="sidebar-overlay" class="fixed inset-0 bg-gray-800 bg-opacity-50 z-30 hidden" aria-hidden="true"></div>
 
 <aside
 	id="sidebar"
-	class="fixed top-16 left-0 z-50 w-64 h-[calc(100vh-4rem)] transition-transform -translate-x-full md:translate-x-0 bg-white border-r border-gray-200 shadow-sm">
+	class="fixed top-16 left-0 z-50 w-64 h-[calc(100vh-4rem)] transition-transform -translate-x-full lg:translate-x-0 bg-white border-r border-gray-200 shadow-sm"
+	aria-label="Sidebar Navigation">
 	<div class="h-full overflow-y-auto py-5 px-3">
-		<div class="space-y-2">
+		<nav class="space-y-2" aria-label="Main Navigation">
 			{
 				navigation.map(({ href, label, icon }) => {
 					const isActive = pathname === href;
@@ -30,7 +32,8 @@ const { pathname } = Astro.url;
 							href={href}
 							class={`flex items-center p-3 text-base font-medium rounded-lg group transition-all duration-200 ${
 								isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'
-							}`}>
+							}`}
+							aria-current={isActive ? 'page' : undefined}>
 							<div
 								class={`w-6 h-6 flex items-center justify-center mr-3 ${isActive ? 'text-blue-700' : 'text-gray-500'}`}>
 								{icon === 'home' && (
@@ -64,7 +67,7 @@ const { pathname } = Astro.url;
 										<line x1="9" y1="21" x2="9" y2="9" />
 									</svg>
 								)}
-								{icon === 'mouse-pointer' && (
+								{icon === 'cursor-click' && (
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="18"
@@ -79,7 +82,7 @@ const { pathname } = Astro.url;
 										<path d="M13 13l6 6" />
 									</svg>
 								)}
-								{icon === 'briefcase' && (
+								{icon === 'server' && (
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="18"
@@ -90,11 +93,13 @@ const { pathname } = Astro.url;
 										stroke-width="2"
 										stroke-linecap="round"
 										stroke-linejoin="round">
-										<rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-										<path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+										<rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+										<rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+										<line x1="6" y1="6" x2="6.01" y2="6" />
+										<line x1="6" y1="18" x2="6.01" y2="18" />
 									</svg>
 								)}
-								{icon === 'message-circle' && (
+								{icon === 'chat' && (
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="18"
@@ -105,7 +110,85 @@ const { pathname } = Astro.url;
 										stroke-width="2"
 										stroke-linecap="round"
 										stroke-linejoin="round">
-										<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+										<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+									</svg>
+								)}
+								{icon === 'sparkles' && (
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="18"
+										height="18"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round">
+										<path d="M12 3l1.88 5.76a1 1 0 0 0 .95.69h6.08a1 1 0 0 1 .59 1.8l-4.93 3.58a1 1 0 0 0-.36 1.12L18.09 21a1 1 0 0 1-1.54 1.12L11.62 18.5a1 1 0 0 0-1.18 0l-4.93 3.58A1 1 0 0 1 4 21l1.88-5.79a1 1 0 0 0-.36-1.12L.59 10.51a1 1 0 0 1 .59-1.8h6.08a1 1 0 0 0 .95-.69L10 3a1 1 0 0 1 1.9 0z" />
+									</svg>
+								)}
+								{icon === 'currency-dollar' && (
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="18"
+										height="18"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round">
+										<line x1="12" y1="1" x2="12" y2="23" />
+										<path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+									</svg>
+								)}
+								{icon === 'question-mark-circle' && (
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="18"
+										height="18"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round">
+										<circle cx="12" cy="12" r="10" />
+										<path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+										<line x1="12" y1="17" x2="12.01" y2="17" />
+									</svg>
+								)}
+								{icon === 'mail' && (
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="18"
+										height="18"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round">
+										<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+										<polyline points="22,6 12,13 2,6" />
+									</svg>
+								)}
+								{icon === 'document-text' && (
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="18"
+										height="18"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round">
+										<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+										<polyline points="14 2 14 8 20 8" />
+										<line x1="16" y1="13" x2="8" y2="13" />
+										<line x1="16" y1="17" x2="8" y2="17" />
+										<polyline points="10 9 9 9 8 9" />
 									</svg>
 								)}
 							</div>
@@ -117,12 +200,13 @@ const { pathname } = Astro.url;
 					);
 				})
 			}
-		</div>
+		</nav>
 
 		<div class="pt-5 mt-5 space-y-2 border-t border-gray-200">
 			<a
 				href="https://github.com/MatPawluk/MaTail"
 				target="_blank"
+				rel="noopener noreferrer"
 				class="flex items-center p-3 text-base font-medium text-gray-700 rounded-lg hover:bg-gray-100 group transition-all duration-200">
 				<div class="w-6 h-6 flex items-center justify-center mr-3 text-gray-500">
 					<svg
@@ -167,13 +251,13 @@ const { pathname } = Astro.url;
 </aside>
 
 <style>
-	/* Dodatkowe style dla poprawnej obsługi sidebara na mobilnych */
+	/* Critical mobile fixes */
 	#sidebar {
 		visibility: visible !important;
 		display: block !important;
-		background-color: white;
-		z-index: 50;
-		color: #1f2937;
+		background-color: white !important;
+		z-index: 50 !important;
+		color: #1f2937 !important;
 	}
 
 	#sidebar div,
@@ -181,65 +265,197 @@ const { pathname } = Astro.url;
 	#sidebar span,
 	#sidebar svg {
 		visibility: visible !important;
-		display: block !important;
-		color: inherit;
+		display: revert !important;
+		color: inherit !important;
 	}
 
 	#sidebar a {
 		display: flex !important;
+		align-items: center !important;
 	}
 
-	#sidebar span {
-		display: inline-block !important;
+	#sidebar span.flex-1 {
+		display: block !important;
 	}
 
 	#sidebar svg {
 		display: inline-block !important;
 	}
 
-	@media (max-width: 768px) {
+	/* Fixed mobile layout */
+	@media (max-width: 1023px) {
 		#sidebar {
-			width: 80%; /* Na mobilnych sidebar może być szerszy */
-			max-width: 300px;
-			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+			width: 80% !important;
+			max-width: 300px !important;
+			transform: translateX(-100%) !important;
+			transition: transform 0.3s ease !important;
+			overflow-y: auto !important;
 		}
 
-		#sidebar a,
-		#sidebar div {
-			color: #1f2937;
-			background-color: white;
+		body.sidebar-open #sidebar {
+			transform: translateX(0) !important;
 		}
 
-		#sidebar a.text-gray-700 {
-			color: #374151 !important;
+		body.sidebar-open #sidebar-overlay {
+			display: block !important;
 		}
+	}
 
-		#sidebar a.text-blue-700 {
-			color: #1d4ed8 !important;
-		}
+	/* Force elements to be visible with !important */
+	#sidebar a.flex.items-center {
+		white-space: normal !important;
+		line-height: 1.2 !important;
+	}
+
+	/* Fix for active link style */
+	#sidebar a.bg-blue-50 {
+		background-color: #eff6ff !important;
+	}
+
+	#sidebar a.text-blue-700 {
+		color: #1d4ed8 !important;
+	}
+
+	#sidebar .w-6 {
+		width: 1.5rem !important;
+		height: 1.5rem !important;
+		min-width: 1.5rem !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+	}
+
+	#sidebar svg {
+		stroke: currentColor !important;
+		width: 18px !important;
+		height: 18px !important;
+	}
+
+	/* Fix scrolling */
+	#sidebar > div {
+		overflow-y: auto !important;
+		-webkit-overflow-scrolling: touch !important;
 	}
 </style>
 
 <script>
-	// Dodatkowy skrypt dla poprawnego wyświetlania zawartości sidebara
+	// Updated script for maximum reliability
 	document.addEventListener('DOMContentLoaded', function () {
+		// Get references to critical elements
 		const sidebar = document.getElementById('sidebar');
+		const overlay = document.getElementById('sidebar-overlay');
+		const sidebarToggle = document.getElementById('sidebar-toggle');
+
+		// Fix visibility of all sidebar elements immediately
+		function fixSidebarVisibility() {
+			if (!sidebar) return;
+
+			// Force sidebar to be visible
+			sidebar.style.visibility = 'visible';
+			sidebar.style.display = 'block';
+
+			// Force all child elements to be visible
+			const allElements = sidebar.querySelectorAll('*');
+			allElements.forEach(el => {
+				const element = el as HTMLElement;
+				element.style.visibility = 'visible';
+
+				// Apply specific styles based on element type
+				if (element.tagName === 'A') {
+					element.style.display = 'flex';
+					element.style.alignItems = 'center';
+				} else if (element.tagName === 'SVG') {
+					element.style.display = 'inline-block';
+				} else if (element.tagName === 'SPAN' && element.classList.contains('flex-1')) {
+					element.style.display = 'block';
+				}
+			});
+
+			// Fix SVG icons specifically
+			const svgIcons = sidebar.querySelectorAll('svg');
+			svgIcons.forEach(svg => {
+				svg.style.stroke = 'currentColor';
+				svg.style.width = '18px';
+				svg.style.height = '18px';
+				svg.style.display = 'inline-block';
+				svg.setAttribute('stroke', 'currentColor');
+			});
+		}
+
+		// Run visibility fix immediately
+		fixSidebarVisibility();
+
+		// Handle toggle click for mobile
+		if (sidebarToggle && sidebar && overlay) {
+			sidebarToggle.addEventListener('click', function () {
+				const isVisible = !sidebar.classList.contains('-translate-x-full');
+
+				if (isVisible) {
+					// Hide sidebar
+					sidebar.classList.add('-translate-x-full');
+					sidebar.style.transform = 'translateX(-100%)';
+					overlay.classList.add('hidden');
+					document.body.classList.remove('sidebar-open');
+				} else {
+					// Show sidebar
+					sidebar.classList.remove('-translate-x-full');
+					sidebar.style.transform = 'translateX(0)';
+					overlay.classList.remove('hidden');
+					document.body.classList.add('sidebar-open');
+
+					// Force fix visibility again when showing
+					fixSidebarVisibility();
+				}
+			});
+
+			// Close when clicking overlay
+			overlay.addEventListener('click', function () {
+				sidebar.classList.add('-translate-x-full');
+				sidebar.style.transform = 'translateX(-100%)';
+				overlay.classList.add('hidden');
+				document.body.classList.remove('sidebar-open');
+			});
+		}
+
+		// Handle resize
+		window.addEventListener('resize', function () {
+			if (window.innerWidth >= 1024) {
+				if (sidebar) {
+					sidebar.classList.remove('-translate-x-full');
+					sidebar.style.transform = '';
+				}
+				if (overlay) {
+					overlay.classList.add('hidden');
+				}
+			} else {
+				if (sidebar && !document.body.classList.contains('sidebar-open')) {
+					sidebar.classList.add('-translate-x-full');
+					sidebar.style.transform = 'translateX(-100%)';
+				}
+			}
+
+			// Force visibility fix on resize
+			fixSidebarVisibility();
+		});
+
+		// Fix after Astro transitions
+		document.addEventListener('astro:after-swap', function () {
+			setTimeout(fixSidebarVisibility, 0);
+			setTimeout(fixSidebarVisibility, 100);
+			setTimeout(fixSidebarVisibility, 500);
+		});
+
+		// Add mutation observer for extra reliability
+		const observer = new MutationObserver(function (mutations) {
+			fixSidebarVisibility();
+		});
 
 		if (sidebar) {
-			// Upewnij się, że wszystkie elementy sidebara są widoczne
-			const allElements = sidebar.querySelectorAll('*');
-			allElements.forEach(element => {
-				const htmlElement = element as HTMLElement;
-				htmlElement.style.visibility = 'visible';
-				if (htmlElement.tagName === 'A') {
-					htmlElement.style.display = 'flex';
-				} else if (htmlElement.tagName === 'SPAN') {
-					htmlElement.style.display = 'inline-block';
-				} else if (htmlElement.tagName === 'SVG') {
-					htmlElement.style.display = 'inline-block';
-				} else {
-					htmlElement.style.display = 'block';
-				}
+			observer.observe(sidebar, {
+				childList: true,
+				subtree: true,
+				attributes: true,
+				attributeFilter: ['style', 'class'],
 			});
 		}
 	});

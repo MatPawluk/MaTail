@@ -294,96 +294,91 @@ code {
 	@apply visible opacity-100;
 }
 
-/* Dodaj te style do global.css */
+/* Improved sidebar responsiveness */
+#sidebar {
+  height: calc(100vh - 4rem);
+  z-index: 50;
+  visibility: visible !important;
+}
 
-/* Zapewnienie widoczności wszystkich elementów sidebar */
-#sidebar,
-#sidebar *,
-#sidebar div,
+@media (max-width: 1023px) {
+  #sidebar {
+    width: 80%;
+    max-width: 300px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  #sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+  
+  body.sidebar-open {
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 1024px) {
+  #sidebar {
+    transform: none !important;
+    width: 16rem;
+  }
+  
+  #main-content {
+    margin-left: 16rem;
+    width: calc(100% - 16rem);
+  }
+}
+
+/* Force elements to be visible */
 #sidebar a,
+#sidebar div,
 #sidebar span,
 #sidebar svg {
-	visibility: visible !important;
-	display: revert !important;
-	opacity: 1 !important;
+  visibility: visible !important;
 }
 
 #sidebar a {
-	display: flex !important;
+  display: flex !important;
+  align-items: center;
 }
 
-#sidebar span.flex-1 {
-	display: block !important;
+/* Improved mobile layout */
+@media (max-width: 640px) {
+  .component-card {
+    padding: 1rem;
+  }
+  
+  .tabs-wrapper .tab-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .copy-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+  
+  .mattails-testimonial-card,
+  .mattails-service-card,
+  .mattails-cta-card {
+    padding: 1.5rem;
+  }
 }
 
-#sidebar .space-y-2 {
-	display: block !important;
+/* Better responsive grid */
+@media (max-width: 768px) {
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Resetowanie potencjalnych konfliktów stylów */
-#sidebar a.text-gray-700 {
-	color: #374151 !important;
-}
-
-#sidebar a.text-blue-700 {
-	color: #1d4ed8 !important;
-}
-
-#sidebar a:hover {
-	background-color: #f3f4f6 !important;
-}
-
-/* Zapewnienie właściwego koloru ikon */
-#sidebar .text-gray-500 {
-	color: #6b7280 !important;
-}
-
-#sidebar .text-blue-700 {
-	color: #1d4ed8 !important;
-}
-
-/* Zapewnienie właściwego z-index dla sidebara */
-#sidebar {
-	z-index: 50 !important;
-}
-
-#sidebar-overlay {
-	z-index: 40 !important;
-}
-
-/* Upewnienie się, że sidebar jest nad overlayem */
-body.overflow-hidden #sidebar {
-	transform: translateX(0) !important;
-}
-
-/* Wyłączenie interakcji z tłem, gdy menu jest otwarte na mobilnych */
-body.overflow-hidden #main-content {
-	pointer-events: none;
-}
-
-body.overflow-hidden #sidebar {
-	pointer-events: auto;
-}
-
-/* Force pokazanie sidebara, gdy jest otwarty */
-#sidebar:not(.translate-x-full) {
-	display: block !important;
-	visibility: visible !important;
-	transform: translateX(0) !important;
-}
-
-/* Styl dla linku aktywnego */
-#sidebar a.bg-blue-50 {
-	background-color: #eff6ff !important;
-}
-
-/* Zapewnienie widoczności ikon */
-#sidebar svg {
-	display: inline-block !important;
-}
-
-/* Styl dla kontenera elementów */
-#sidebar .space-y-2,
-#sidebar .pt-5 {
-	display: block !important;
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

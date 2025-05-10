@@ -1,8 +1,11 @@
 ---
+// src/layouts/MainLayout.astro - Updated with better responsive handling
 import { ViewTransitions } from 'astro:transitions';
 import Sidebar from '../components/Sidebar.astro';
 import Topbar from '../components/Topbar.astro';
 import '../styles/global.css';
+
+// This layout adds improved responsiveness
 ---
 
 <html lang="pl">
@@ -12,7 +15,7 @@ import '../styles/global.css';
 		<meta name="description" content="MaTails - Kolekcja komponentów UI zbudowanych przy użyciu Astro i Tailwind CSS" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-		<!-- Prism CSS dla kolorowania składni (Motyw Dracula) -->
+		<!-- Prism CSS for syntax highlighting (Dracula Theme) -->
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
@@ -21,11 +24,11 @@ import '../styles/global.css';
 			referrerpolicy="no-referrer"
 		/>
 
-		<!-- Dodatkowy plik CSS dla motywu Dracula -->
+		<!-- Additional CSS for Dracula theme -->
 		<style is:global>
 			/**
-       * Dracula Theme for Prism.js
-       */
+			 * Dracula Theme for Prism.js
+			 */
 			pre[class*='language-'],
 			code[class*='language-'] {
 				color: #f8f8f2;
@@ -146,21 +149,64 @@ import '../styles/global.css';
 				cursor: help;
 			}
 
-			/* Dodatkowy styl dla prawidłowego wyświetlania sidebara na mobilnych */
-			@media (max-width: 768px) {
+			/* Improved responsive styles for sidebar */
+			@media (max-width: 1023px) {
 				#sidebar {
 					width: 80%;
 					max-width: 300px;
+					transform: translateX(-100%);
+					transition: transform 0.3s ease-in-out;
+					z-index: 50;
+				}
+				
+				body.sidebar-open #sidebar {
+					transform: translateX(0);
+				}
+				
+				body.sidebar-open #sidebar-overlay {
+					display: block !important;
+				}
+			}
+
+			@media (min-width: 1024px) {
+				#sidebar {
+					transform: none !important;
+				}
+				
+				#main-content {
+					width: calc(100% - 16rem);
+					margin-left: 16rem;
+				}
+			}
+			
+			/* Custom breakpoint for extra small devices */
+			@media (max-width: 475px) {
+				.preview {
+					padding: 0.75rem !important;
+				}
+				
+				.copy-btn {
+					padding: 0.375rem 0.75rem !important;
+					font-size: 0.75rem !important;
+				}
+				
+				h1.text-3xl, h1.text-4xl {
+					font-size: 1.5rem !important;
+				}
+				
+				.p-6 {
+					padding: 1rem !important;
 				}
 			}
 		</style>
 
-		<!-- JavaScript dla projektu -->
+		<!-- JavaScript for project -->
 		<script src="/scripts/clipboard.js" defer></script>
 		<script src="/scripts/view-transition.js" defer></script>
 		<script src="/scripts/prism-initializer.js" defer></script>
+		<script src="/scripts/sidebar.js" defer></script>
 
-		<!-- Prism JavaScript dla kolorowania składni -->
+		<!-- Prism JavaScript for syntax highlighting -->
 		<script
 			is:inline
 			src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"
@@ -181,26 +227,26 @@ import '../styles/global.css';
 		<Topbar />
 		<Sidebar />
 
-		<!-- Główna treść -->
+		<!-- Main content -->
 		<main class="pt-16 transition-all duration-300" id="main-content">
 			<div class="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto">
-				<!-- Nagłówek strony -->
-				<div class="mb-8">
-					<h1 class="text-2xl font-bold text-gray-800 mb-2">
+				<!-- Page header -->
+				<div class="mb-6 md:mb-8">
+					<h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
 						<slot name="page-title">MaTails - Komponenty UI</slot>
 					</h1>
-					<p class="text-gray-600">
+					<p class="text-gray-600 text-sm sm:text-base">
 						<slot name="page-description">Kolekcja gotowych komponentów zbudowanych z Astro i Tailwind CSS.</slot>
 					</p>
 				</div>
 
-				<!-- Główna zawartość -->
-				<div class="view-container bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+				<!-- Main content -->
+				<div class="view-container bg-white p-4 sm:p-6 rounded-lg border border-gray-200 shadow-sm">
 					<slot />
 				</div>
 
-				<!-- Stopka -->
-				<footer class="mt-8 text-center text-sm text-gray-500 pb-8">
+				<!-- Footer -->
+				<footer class="mt-6 md:mt-8 text-center text-sm text-gray-500 pb-4 md:pb-8">
 					<div class="mb-2">
 						<span>MaTails &copy; 2025</span>
 						<span class="mx-2">|</span>
@@ -217,96 +263,106 @@ import '../styles/global.css';
 		</main>
 
 		<script>
-			// Skrypt do obsługi responsywnego sidebara
+			// Improved script for responsive layout
 			document.addEventListener('DOMContentLoaded', function () {
 				const sidebar = document.getElementById('sidebar');
 				const mainContent = document.getElementById('main-content');
+				const sidebarOverlay = document.getElementById('sidebar-overlay');
 
+				// Function to adjust layout based on screen size
 				function adjustLayout() {
-					if (window.innerWidth >= 768) {
-						// Na większych ekranach dodajemy margines
-						mainContent.classList.add('md:ml-64');
+					if (window.innerWidth >= 1024) {
+						// On desktop screens
+						if (mainContent) {
+							mainContent.classList.add('lg:ml-64');
+							mainContent.style.width = 'calc(100% - 16rem)';
+						}
+						
+						if (sidebar) {
+							sidebar.classList.remove('-translate-x-full');
+							sidebar.style.transform = '';
+						}
+						
+						if (sidebarOverlay) {
+							sidebarOverlay.classList.add('hidden');
+						}
+						
+						document.body.classList.remove('sidebar-open');
+						document.body.style.overflow = '';
 					} else {
-						// Na mniejszych usuwamy
-						mainContent.classList.remove('md:ml-64');
+						// On smaller screens
+						if (mainContent) {
+							mainContent.classList.remove('lg:ml-64');
+							mainContent.style.width = '100%';
+						}
+						
+						// Hide sidebar unless explicitly opened
+						if (sidebar && !document.body.classList.contains('sidebar-open')) {
+							sidebar.classList.add('-translate-x-full');
+						}
 					}
 				}
 
-				// Wykonanie przy ładowaniu
+				// Run on page load
 				adjustLayout();
-
-				// Nasłuchiwanie na zmiany rozmiaru okna
+				
+				// Listen for window resize
 				window.addEventListener('resize', adjustLayout);
-
-				// Po przejściu View Transitions
-				document.addEventListener('astro:after-swap', adjustLayout);
+				
+				// After View Transitions
+				document.addEventListener('astro:after-swap', function() {
+					// Re-query elements since DOM has been updated
+					const updatedSidebar = document.getElementById('sidebar');
+					const updatedMainContent = document.getElementById('main-content');
+					const updatedOverlay = document.getElementById('sidebar-overlay');
+					
+					// Reapply layout adjustments
+					if (window.innerWidth >= 1024) {
+						if (updatedMainContent) {
+							updatedMainContent.classList.add('lg:ml-64');
+							updatedMainContent.style.width = 'calc(100% - 16rem)';
+						}
+						
+						if (updatedSidebar) {
+							updatedSidebar.classList.remove('-translate-x-full');
+							updatedSidebar.style.transform = '';
+						}
+						
+						if (updatedOverlay) {
+							updatedOverlay.classList.add('hidden');
+						}
+						
+						document.body.classList.remove('sidebar-open');
+						document.body.style.overflow = '';
+					} else {
+						if (updatedMainContent) {
+							updatedMainContent.classList.remove('lg:ml-64');
+							updatedMainContent.style.width = '100%';
+						}
+						
+						if (updatedSidebar && !document.body.classList.contains('sidebar-open')) {
+							updatedSidebar.classList.add('-translate-x-full');
+						}
+					}
+					
+					// Fix sidebar visibility
+					if (updatedSidebar) {
+						const allElements = updatedSidebar.querySelectorAll('*');
+						allElements.forEach(el => {
+							if (el instanceof HTMLElement) {
+								if (el.tagName === 'A') {
+									el.style.display = 'flex';
+								} else if (el.tagName === 'SPAN' && el.classList.contains('flex-1')) {
+									el.style.display = 'block';
+								} else if (el.tagName === 'SVG') {
+									el.style.display = 'inline-block';
+								}
+								el.style.visibility = 'visible';
+							}
+						});
+					}
+				});
 			});
 		</script>
 	</body>
 </html>
-
-<!-- Dodaj ten skrypt inline wewnątrz tagu <head> w pliku Layout.astro -->
-
-<script is:inline>
-	// Natychmiastowe uruchomienie skryptu do naprawy sidebara
-	(function () {
-		// Zapewniamy, że skrypt zostanie uruchomiony natychmiast przy renderowaniu strony
-		function fixSidebar() {
-			const sidebar = document.getElementById('sidebar');
-			if (!sidebar) return;
-
-			// Gwarantujemy widoczność sidebara
-			sidebar.style.visibility = 'visible';
-			sidebar.style.display = 'block';
-			sidebar.style.zIndex = '50';
-
-			// Zapewniamy widoczność wszystkich linków i ikon w sidebarze
-			const allElements = sidebar.querySelectorAll('*');
-			allElements.forEach(el => {
-				el.style.visibility = 'visible';
-
-				// Ustawiamy właściwy display dla różnych elementów
-				if (el.tagName === 'A') {
-					el.style.display = 'flex';
-				} else if (el.tagName === 'SVG') {
-					el.style.display = 'inline-block';
-				} else if (el.tagName === 'SPAN' && el.classList.contains('flex-1')) {
-					el.style.display = 'block';
-				}
-			});
-
-			// Poprawiamy styl dla przestrzeni z nawigacją
-			const navSpace = sidebar.querySelector('.space-y-2');
-			if (navSpace) {
-				navSpace.style.display = 'block';
-			}
-		}
-
-		// Wykonaj natychmiast
-		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', fixSidebar);
-		} else {
-			fixSidebar();
-		}
-
-		// Wykonaj też po zamianie widoku Astro
-		document.addEventListener('astro:after-swap', fixSidebar);
-
-		// Obserwuj zmiany w DOM aby naprawić sidebar nawet jeśli jest dodany dynamicznie
-		const observer = new MutationObserver(mutations => {
-			for (const mutation of mutations) {
-				if (mutation.addedNodes.length) {
-					const sidebar = document.getElementById('sidebar');
-					if (sidebar) {
-						fixSidebar();
-					}
-				}
-			}
-		});
-
-		observer.observe(document.documentElement, {
-			childList: true,
-			subtree: true,
-		});
-	})();
-</script>

@@ -1,4 +1,5 @@
 ---
+// src/components/Topbar.astro - Improved responsive design
 import { Image } from 'astro:assets';
 import Logo from '../assets/logo.svg';
 ---
@@ -9,9 +10,10 @@ import Logo from '../assets/logo.svg';
 			<button
 				type="button"
 				id="sidebar-toggle"
-				class="p-2 mr-2 md:hidden text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+				class="p-2 mr-2 lg:hidden text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 transition-all"
 				aria-controls="sidebar"
 				aria-expanded="false">
+				<span class="sr-only">Toggle sidebar</span>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="20"
@@ -21,12 +23,12 @@ import Logo from '../assets/logo.svg';
 					stroke="currentColor"
 					stroke-width="2"
 					stroke-linecap="round"
-					stroke-linejoin="round">
+					stroke-linejoin="round"
+					aria-hidden="true">
 					<line x1="3" y1="12" x2="21" y2="12"></line>
 					<line x1="3" y1="6" x2="21" y2="6"></line>
 					<line x1="3" y1="18" x2="21" y2="18"></line>
 				</svg>
-				<span class="sr-only">Toggle sidebar</span>
 			</button>
 
 			<a href="/" class="flex items-center">
@@ -42,30 +44,71 @@ import Logo from '../assets/logo.svg';
 				<a
 					href="https://github.com/MatPawluk/MaTail"
 					target="_blank"
-					class="px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition-colors duration-200">
-					<div class="flex items-center gap-2">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round">
-							<path
-								d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-							></path>
-						</svg>
-						<span>GitHub</span>
-					</div>
+					rel="noopener noreferrer"
+					class="px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center gap-2">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true">
+						<path
+							d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+						></path>
+					</svg>
+					<span>GitHub</span>
 				</a>
 			</div>
 
+			<!-- Mobile dropdown menu -->
+			<div class="relative md:hidden">
+				<button
+					type="button"
+					id="mobile-menu-button"
+					class="flex items-center justify-center p-2 rounded-full text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-200"
+					aria-expanded="false"
+					aria-haspopup="menu">
+					<span class="sr-only">Open menu</span>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round">
+						<circle cx="12" cy="12" r="1"></circle>
+						<circle cx="19" cy="12" r="1"></circle>
+						<circle cx="5" cy="12" r="1"></circle>
+					</svg>
+				</button>
+
+				<div
+					id="mobile-dropdown"
+					class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden z-50 border border-gray-200">
+					<a
+						href="https://github.com/MatPawluk/MaTail"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+						GitHub
+					</a>
+					<a href="#documentation" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"> Dokumentacja </a>
+				</div>
+			</div>
+
 			<div class="relative">
-				<button type="button" class="flex text-sm bg-gray-100 rounded-full focus:ring-4 focus:ring-gray-200">
-					<span class="sr-only">Open user menu</span>
+				<button
+					type="button"
+					class="flex text-sm bg-gray-100 rounded-full focus:ring-4 focus:ring-gray-200"
+					aria-label="User profile">
 					<div class="w-8 h-8 rounded-full flex items-center justify-center bg-blue-600 text-white text-xs">MP</div>
 				</button>
 			</div>
@@ -74,75 +117,139 @@ import Logo from '../assets/logo.svg';
 </header>
 
 <script>
-	// Obsługa przycisku toggle dla sidebara na urządzeniach mobilnych
+	// Enhanced script for topbar interactions
 	document.addEventListener('DOMContentLoaded', () => {
+		// Mobile menu toggle
+		const mobileMenuButton = document.getElementById('mobile-menu-button');
+		const mobileDropdown = document.getElementById('mobile-dropdown');
+
+		if (mobileMenuButton && mobileDropdown) {
+			mobileMenuButton.addEventListener('click', () => {
+				const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+				mobileMenuButton.setAttribute('aria-expanded', (!expanded).toString());
+				mobileDropdown.classList.toggle('hidden');
+			});
+
+			// Close mobile menu when clicking outside
+			document.addEventListener('click', event => {
+				if (!mobileMenuButton.contains(event.target as Node) && !mobileDropdown.contains(event.target as Node)) {
+					mobileDropdown.classList.add('hidden');
+					mobileMenuButton.setAttribute('aria-expanded', 'false');
+				}
+			});
+		}
+
+		// Sidebar toggle functionality
 		const sidebarToggle = document.getElementById('sidebar-toggle');
 		const sidebar = document.getElementById('sidebar');
 		const overlay = document.getElementById('sidebar-overlay');
 
 		if (sidebarToggle && sidebar && overlay) {
-			// Funkcja do przełączania sidebara
-			const toggleSidebar = () => {
-				// Sprawdzamy czy sidebar jest widoczny
+			// Toggle sidebar visibility
+			sidebarToggle.addEventListener('click', () => {
 				const isVisible = !sidebar.classList.contains('-translate-x-full');
 
 				if (isVisible) {
-					// Chowamy sidebar
+					// Hide sidebar
 					sidebar.classList.add('-translate-x-full');
 					overlay.classList.add('hidden');
+					document.body.classList.remove('sidebar-open');
+					document.body.style.overflow = '';
 					sidebarToggle.setAttribute('aria-expanded', 'false');
-					// Odblokowujemy scrollowanie body
-					document.body.classList.remove('overflow-hidden');
 				} else {
-					// Pokazujemy sidebar
+					// Show sidebar
 					sidebar.classList.remove('-translate-x-full');
 					overlay.classList.remove('hidden');
+					document.body.classList.add('sidebar-open');
+
+					// Block scrolling on mobile
+					if (window.innerWidth < 1024) {
+						document.body.style.overflow = 'hidden';
+					}
+
 					sidebarToggle.setAttribute('aria-expanded', 'true');
-					// Blokujemy scrollowanie body przy otwartym mobilnym menu
-					document.body.classList.add('overflow-hidden');
-				}
-			};
-
-			// Obsługa kliknięcia przycisku toggle
-			sidebarToggle.addEventListener('click', toggleSidebar);
-
-			// Obsługa kliknięcia w overlay (tło)
-			overlay.addEventListener('click', toggleSidebar);
-
-			// Dodanie obsługi klawiszy - Escape zamyka sidebar
-			document.addEventListener('keydown', e => {
-				if (e.key === 'Escape' && !sidebar.classList.contains('-translate-x-full')) {
-					toggleSidebar();
 				}
 			});
 
-			// Obsługa kliknięcia w linki w sidebar (zamknięcie na mobilnych)
-			const sidebarLinks = sidebar.querySelectorAll('a');
-			if (window.innerWidth < 768) {
-				sidebarLinks.forEach(link => {
-					link.addEventListener('click', () => {
-						toggleSidebar();
-					});
+			// Close sidebar when clicking the overlay
+			overlay.addEventListener('click', () => {
+				sidebar.classList.add('-translate-x-full');
+				overlay.classList.add('hidden');
+				document.body.classList.remove('sidebar-open');
+				document.body.style.overflow = '';
+				sidebarToggle.setAttribute('aria-expanded', 'false');
+			});
+
+			// Close sidebar with Escape key
+			document.addEventListener('keydown', e => {
+				if (e.key === 'Escape' && !sidebar.classList.contains('-translate-x-full')) {
+					sidebar.classList.add('-translate-x-full');
+					overlay.classList.add('hidden');
+					document.body.classList.remove('sidebar-open');
+					document.body.style.overflow = '';
+					sidebarToggle.setAttribute('aria-expanded', 'false');
+				}
+			});
+		}
+
+		// Re-initialize after Astro page transitions
+		document.addEventListener('astro:after-swap', () => {
+			// Re-query elements after page swap
+			const newMobileMenuButton = document.getElementById('mobile-menu-button');
+			const newMobileDropdown = document.getElementById('mobile-dropdown');
+			const newSidebarToggle = document.getElementById('sidebar-toggle');
+			const newSidebar = document.getElementById('sidebar');
+			const newOverlay = document.getElementById('sidebar-overlay');
+
+			// Re-attach event listeners
+			if (newMobileMenuButton && newMobileDropdown) {
+				newMobileMenuButton.addEventListener('click', () => {
+					const expanded = newMobileMenuButton.getAttribute('aria-expanded') === 'true';
+					newMobileMenuButton.setAttribute('aria-expanded', (!expanded).toString());
+					newMobileDropdown.classList.toggle('hidden');
 				});
 			}
-		}
-	});
 
-	// Obsługa zmiany szerokości ekranu
-	window.addEventListener('resize', () => {
-		const sidebar = document.getElementById('sidebar');
-		const overlay = document.getElementById('sidebar-overlay');
+			if (newSidebarToggle && newSidebar && newOverlay) {
+				newSidebarToggle.addEventListener('click', () => {
+					const isVisible = !newSidebar.classList.contains('-translate-x-full');
 
-		if (sidebar && overlay) {
-			if (window.innerWidth >= 768) {
-				// Na desktopie sidebar zawsze widoczny
-				sidebar.classList.remove('-translate-x-full');
-				overlay.classList.add('hidden');
-				document.body.classList.remove('overflow-hidden');
-			} else if (!document.body.classList.contains('overflow-hidden')) {
-				// Na mobilnych ukrywamy, chyba że jest już otwarty
-				sidebar.classList.add('-translate-x-full');
+					if (isVisible) {
+						newSidebar.classList.add('-translate-x-full');
+						newOverlay.classList.add('hidden');
+						document.body.classList.remove('sidebar-open');
+						document.body.style.overflow = '';
+						newSidebarToggle.setAttribute('aria-expanded', 'false');
+					} else {
+						newSidebar.classList.remove('-translate-x-full');
+						newOverlay.classList.remove('hidden');
+						document.body.classList.add('sidebar-open');
+
+						if (window.innerWidth < 1024) {
+							document.body.style.overflow = 'hidden';
+						}
+
+						newSidebarToggle.setAttribute('aria-expanded', 'true');
+					}
+				});
+
+				newOverlay.addEventListener('click', () => {
+					newSidebar.classList.add('-translate-x-full');
+					newOverlay.classList.add('hidden');
+					document.body.classList.remove('sidebar-open');
+					document.body.style.overflow = '';
+					newSidebarToggle.setAttribute('aria-expanded', 'false');
+				});
 			}
-		}
+		});
 	});
 </script>
+
+<style>
+	/* Mobile responsive styles for topbar */
+	@media (max-width: 639px) {
+		header .text-xl {
+			font-size: 1.1rem;
+		}
+	}
+</style>
