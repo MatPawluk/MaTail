@@ -1,9 +1,148 @@
 ---
-import Image from "astro/components/Image.astro";
-import Logo from "../assets/logo.svg";
+import { Image } from 'astro:assets';
+import Logo from '../assets/logo.svg';
 ---
 
-<header class="w-full h-16 bg-white border-b shadow-md fixed top-0 left-0 z-50 flex items-center px-6">
-	<Image src={Logo}alt="Logo" class="w-8 h-8 mr-3" />
-	<h1 class="text-xl font-bold text-gray-800">MaTails</h1>
+<header class="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200 shadow-sm">
+	<div class="flex items-center justify-between h-16 px-4 md:px-6">
+		<div class="flex items-center">
+			<button
+				type="button"
+				id="sidebar-toggle"
+				class="p-2 mr-2 md:hidden text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+				aria-controls="sidebar"
+				aria-expanded="false">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round">
+					<line x1="3" y1="12" x2="21" y2="12"></line>
+					<line x1="3" y1="6" x2="21" y2="6"></line>
+					<line x1="3" y1="18" x2="21" y2="18"></line>
+				</svg>
+				<span class="sr-only">Toggle sidebar</span>
+			</button>
+
+			<a href="/" class="flex items-center">
+				<Image src={Logo} alt="MaTails Logo" class="w-8 h-8 mr-3" width={32} height={32} />
+				<span class="self-center text-xl font-semibold whitespace-nowrap text-gray-800">
+					Ma<span class="text-blue-600">Tails</span>
+				</span>
+			</a>
+		</div>
+
+		<div class="flex items-center gap-4">
+			<div class="hidden md:flex">
+				<a
+					href="https://github.com/MatPawluk/MaTail"
+					target="_blank"
+					class="px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition-colors duration-200">
+					<div class="flex items-center gap-2">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round">
+							<path
+								d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+							></path>
+						</svg>
+						<span>GitHub</span>
+					</div>
+				</a>
+			</div>
+
+			<div class="relative">
+				<button type="button" class="flex text-sm bg-gray-100 rounded-full focus:ring-4 focus:ring-gray-200">
+					<span class="sr-only">Open user menu</span>
+					<div class="w-8 h-8 rounded-full flex items-center justify-center bg-blue-600 text-white text-xs">MP</div>
+				</button>
+			</div>
+		</div>
+	</div>
 </header>
+
+<script>
+	// Obsługa przycisku toggle dla sidebara na urządzeniach mobilnych
+	document.addEventListener('DOMContentLoaded', () => {
+		const sidebarToggle = document.getElementById('sidebar-toggle');
+		const sidebar = document.getElementById('sidebar');
+		const overlay = document.getElementById('sidebar-overlay');
+
+		if (sidebarToggle && sidebar && overlay) {
+			// Funkcja do przełączania sidebara
+			const toggleSidebar = () => {
+				// Sprawdzamy czy sidebar jest widoczny
+				const isVisible = !sidebar.classList.contains('-translate-x-full');
+
+				if (isVisible) {
+					// Chowamy sidebar
+					sidebar.classList.add('-translate-x-full');
+					overlay.classList.add('hidden');
+					sidebarToggle.setAttribute('aria-expanded', 'false');
+					// Odblokowujemy scrollowanie body
+					document.body.classList.remove('overflow-hidden');
+				} else {
+					// Pokazujemy sidebar
+					sidebar.classList.remove('-translate-x-full');
+					overlay.classList.remove('hidden');
+					sidebarToggle.setAttribute('aria-expanded', 'true');
+					// Blokujemy scrollowanie body przy otwartym mobilnym menu
+					document.body.classList.add('overflow-hidden');
+				}
+			};
+
+			// Obsługa kliknięcia przycisku toggle
+			sidebarToggle.addEventListener('click', toggleSidebar);
+
+			// Obsługa kliknięcia w overlay (tło)
+			overlay.addEventListener('click', toggleSidebar);
+
+			// Dodanie obsługi klawiszy - Escape zamyka sidebar
+			document.addEventListener('keydown', e => {
+				if (e.key === 'Escape' && !sidebar.classList.contains('-translate-x-full')) {
+					toggleSidebar();
+				}
+			});
+
+			// Obsługa kliknięcia w linki w sidebar (zamknięcie na mobilnych)
+			const sidebarLinks = sidebar.querySelectorAll('a');
+			if (window.innerWidth < 768) {
+				sidebarLinks.forEach(link => {
+					link.addEventListener('click', () => {
+						toggleSidebar();
+					});
+				});
+			}
+		}
+	});
+
+	// Obsługa zmiany szerokości ekranu
+	window.addEventListener('resize', () => {
+		const sidebar = document.getElementById('sidebar');
+		const overlay = document.getElementById('sidebar-overlay');
+
+		if (sidebar && overlay) {
+			if (window.innerWidth >= 768) {
+				// Na desktopie sidebar zawsze widoczny
+				sidebar.classList.remove('-translate-x-full');
+				overlay.classList.add('hidden');
+				document.body.classList.remove('overflow-hidden');
+			} else if (!document.body.classList.contains('overflow-hidden')) {
+				// Na mobilnych ukrywamy, chyba że jest już otwarty
+				sidebar.classList.add('-translate-x-full');
+			}
+		}
+	});
+</script>

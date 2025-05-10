@@ -1,14 +1,78 @@
 @import 'tailwindcss';
-
 @import 'flowbite';
 
-/* Stylizacja kart */
+/* Zmienne kolorów i motywu */
+:root {
+	--color-primary: #3b82f6;
+	--color-primary-dark: #2563eb;
+	--color-primary-light: #60a5fa;
+	--color-secondary: #6366f1;
+	--color-success: #10b981;
+	--color-warning: #f59e0b;
+	--color-danger: #ef4444;
+	--color-gray-50: #f8fafc;
+	--color-gray-100: #f1f5f9;
+	--color-gray-200: #e2e8f0;
+	--color-gray-300: #cbd5e1;
+	--color-gray-400: #94a3b8;
+	--color-gray-500: #64748b;
+	--color-gray-600: #475569;
+	--color-gray-700: #334155;
+	--color-gray-800: #1e293b;
+	--color-gray-900: #0f172a;
+}
+
+/* Base styling */
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+		'Helvetica Neue', sans-serif;
+	color: var(--color-gray-800);
+	line-height: 1.6;
+	background-color: var(--color-gray-50);
+}
+
+/* Typografia */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 0;
+	line-height: 1.2;
+	font-weight: 700;
+}
+
+p {
+	margin-top: 0;
+}
+
+a {
+	color: var(--color-primary);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* Stylizacja komponentu karty */
 .card {
-	@apply bg-white border rounded-lg shadow-lg overflow-hidden;
+	@apply bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden;
+	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+	@apply shadow-md;
+	transform: translateY(-3px);
 }
 
 .card-header {
-	@apply p-4 bg-gray-100;
+	@apply p-4 bg-gray-50 border-b border-gray-200;
 }
 
 .card-body {
@@ -16,36 +80,310 @@
 }
 
 .card-footer {
-	@apply p-4 bg-gray-100 text-right;
+	@apply p-4 bg-gray-50 border-t border-gray-200 text-right;
 }
 
 /* Stylizacja przycisków */
 .btn {
-	@apply px-4 py-2 rounded-lg text-white;
+	@apply inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors;
 }
 
 .btn-primary {
-	@apply bg-blue-500 hover:bg-blue-600;
+	@apply bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500;
+}
+
+.btn-secondary {
+	@apply bg-gray-200 hover:bg-gray-300 text-gray-800 focus:ring-gray-500;
+}
+
+.btn-success {
+	@apply bg-green-600 hover:bg-green-700 text-white focus:ring-green-500;
+}
+
+.btn-danger {
+	@apply bg-red-600 hover:bg-red-700 text-white focus:ring-red-500;
 }
 
 .btn-sm {
-	@apply text-sm;
+	@apply text-sm px-3 py-1.5;
+}
+
+.btn-lg {
+	@apply text-lg px-6 py-3;
 }
 
 /* Stylizacja zakładek */
 .tabs {
-	@apply flex space-x-2;
+	@apply flex space-x-1 border-b border-gray-200;
 }
 
 .tab {
-	@apply px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300;
+	@apply px-4 py-2 text-sm font-medium rounded-t-lg border-t border-l border-r;
 }
 
 .tab-active {
-	@apply bg-blue-500 text-white;
+	@apply bg-white border-gray-200 text-blue-600 border-b-white -mb-px;
 }
 
-/* Stylizacja podglądu */
+.tab-inactive {
+	@apply bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-700 hover:bg-gray-100;
+}
+
+/* Stylizacja podglądu kodu */
+.code-preview {
+	@apply bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden;
+}
+
 .preview {
-	@apply p-4 bg-gray-50 border rounded-lg;
+	@apply p-6 bg-gray-50 border rounded-lg border-gray-200;
+}
+
+/* Stylizacja poświęcona kopiowaniu kodu */
+.copy-btn {
+	@apply inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-md bg-blue-50 text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors;
+}
+
+.copy-success {
+	@apply bg-green-50 text-green-700 hover:bg-green-100;
+}
+
+/* Responsywność sidebara */
+@media (max-width: 1024px) {
+	aside {
+		transform: translateX(-100%);
+	}
+
+	aside.open {
+		transform: translateX(0);
+	}
+
+	main {
+		margin-left: 0 !important;
+	}
+}
+
+/* Animacje i przejścia */
+.fade-in {
+	animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--color-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--color-gray-300);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--color-gray-400);
+}
+
+/* Code block styling */
+pre {
+	@apply bg-gray-800 text-white p-4 rounded-md overflow-x-auto;
+}
+
+code {
+	@apply font-mono text-sm;
+}
+
+/* Dodatkowe klasy pomocnicze */
+.text-gradient {
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.text-gradient-blue {
+	background-image: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+}
+
+.shadow-blue {
+	box-shadow: 0 4px 14px rgba(59, 130, 246, 0.15);
+}
+
+/* Komponenty specyficzne dla MaTail */
+.component-container {
+	@apply p-6 border border-gray-200 rounded-lg mb-6 bg-white shadow-sm;
+}
+
+.component-header {
+	@apply flex justify-between items-center mb-4 pb-4 border-b border-gray-200;
+}
+
+.component-title {
+	@apply text-xl font-bold text-gray-800;
+}
+
+.component-body {
+	@apply mb-4;
+}
+
+.component-footer {
+	@apply flex justify-end pt-4 border-t border-gray-200;
+}
+
+/* Custom feedback badges */
+.badge {
+	@apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-blue {
+	@apply bg-blue-100 text-blue-800;
+}
+
+.badge-green {
+	@apply bg-green-100 text-green-800;
+}
+
+.badge-yellow {
+	@apply bg-yellow-100 text-yellow-800;
+}
+
+.badge-red {
+	@apply bg-red-100 text-red-800;
+}
+
+.badge-purple {
+	@apply bg-purple-100 text-purple-800;
+}
+
+/* Tooltips */
+.tooltip {
+	@apply relative inline-block;
+}
+
+.tooltip-text {
+	@apply invisible absolute z-10 py-2 px-3 bg-gray-800 text-white text-xs rounded-md opacity-0 transition-opacity duration-300;
+	width: max-content;
+	max-width: 200px;
+	bottom: 125%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.tooltip-text::after {
+	content: '';
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #1e293b transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+	@apply visible opacity-100;
+}
+
+/* Dodaj te style do global.css */
+
+/* Zapewnienie widoczności wszystkich elementów sidebar */
+#sidebar,
+#sidebar *,
+#sidebar div,
+#sidebar a,
+#sidebar span,
+#sidebar svg {
+	visibility: visible !important;
+	display: revert !important;
+	opacity: 1 !important;
+}
+
+#sidebar a {
+	display: flex !important;
+}
+
+#sidebar span.flex-1 {
+	display: block !important;
+}
+
+#sidebar .space-y-2 {
+	display: block !important;
+}
+
+/* Resetowanie potencjalnych konfliktów stylów */
+#sidebar a.text-gray-700 {
+	color: #374151 !important;
+}
+
+#sidebar a.text-blue-700 {
+	color: #1d4ed8 !important;
+}
+
+#sidebar a:hover {
+	background-color: #f3f4f6 !important;
+}
+
+/* Zapewnienie właściwego koloru ikon */
+#sidebar .text-gray-500 {
+	color: #6b7280 !important;
+}
+
+#sidebar .text-blue-700 {
+	color: #1d4ed8 !important;
+}
+
+/* Zapewnienie właściwego z-index dla sidebara */
+#sidebar {
+	z-index: 50 !important;
+}
+
+#sidebar-overlay {
+	z-index: 40 !important;
+}
+
+/* Upewnienie się, że sidebar jest nad overlayem */
+body.overflow-hidden #sidebar {
+	transform: translateX(0) !important;
+}
+
+/* Wyłączenie interakcji z tłem, gdy menu jest otwarte na mobilnych */
+body.overflow-hidden #main-content {
+	pointer-events: none;
+}
+
+body.overflow-hidden #sidebar {
+	pointer-events: auto;
+}
+
+/* Force pokazanie sidebara, gdy jest otwarty */
+#sidebar:not(.translate-x-full) {
+	display: block !important;
+	visibility: visible !important;
+	transform: translateX(0) !important;
+}
+
+/* Styl dla linku aktywnego */
+#sidebar a.bg-blue-50 {
+	background-color: #eff6ff !important;
+}
+
+/* Zapewnienie widoczności ikon */
+#sidebar svg {
+	display: inline-block !important;
+}
+
+/* Styl dla kontenera elementów */
+#sidebar .space-y-2,
+#sidebar .pt-5 {
+	display: block !important;
 }

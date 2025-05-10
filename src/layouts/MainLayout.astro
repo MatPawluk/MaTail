@@ -6,20 +6,307 @@ import '../styles/global.css';
 ---
 
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script src="/scripts/clipboard.js" defer></script>
-    <title>MaTails</title>
-    <ViewTransitions />
-  </head>
-  <body class="bg-white text-gray-900">
-    <Topbar />
-    <Sidebar />
-    <main class="ml-64 mt-16 p-6">
-      <div class="view-container">
-        <slot />
-      </div>
-    </main>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="MaTails - Kolekcja komponentów UI zbudowanych przy użyciu Astro i Tailwind CSS" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<!-- Prism CSS dla kolorowania składni (Motyw Dracula) -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+			integrity="sha512-vswe+cgvic/XBoF1OcM/TeJ2FW0OofqAVdCZiEYkd6dwGXthvkSFWOoGGJgS2CW70VK5dQM5Oh+7ne47s74VTg=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+
+		<!-- Dodatkowy plik CSS dla motywu Dracula -->
+		<style is:global>
+			/**
+       * Dracula Theme for Prism.js
+       */
+			pre[class*='language-'],
+			code[class*='language-'] {
+				color: #f8f8f2;
+				background: none;
+				font-family: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+				text-align: left;
+				white-space: pre;
+				word-spacing: normal;
+				word-break: normal;
+				word-wrap: normal;
+				line-height: 1.5;
+				tab-size: 4;
+				hyphens: none;
+			}
+
+			pre[class*='language-']::selection,
+			code[class*='language-']::selection,
+			pre[class*='language-'] ::selection,
+			code[class*='language-'] ::selection {
+				text-shadow: none;
+				background-color: #44475a;
+			}
+
+			@media print {
+				pre[class*='language-'],
+				code[class*='language-'] {
+					text-shadow: none;
+				}
+			}
+
+			.dracula-code,
+			pre[class*='language-'] {
+				background: #282a36;
+				border-radius: 0.5em;
+				padding: 1em;
+				margin: 0.5em 0;
+				overflow: auto;
+			}
+
+			:not(pre) > code[class*='language-'] {
+				padding: 0.1em 0.3em;
+				border-radius: 0.3em;
+				white-space: normal;
+			}
+
+			.token.comment,
+			.token.prolog,
+			.token.doctype,
+			.token.cdata {
+				color: #6272a4;
+			}
+
+			.token.punctuation {
+				color: #f8f8f2;
+			}
+
+			.namespace {
+				opacity: 0.7;
+			}
+
+			.token.property,
+			.token.tag,
+			.token.constant,
+			.token.symbol,
+			.token.deleted {
+				color: #ff79c6;
+			}
+
+			.token.boolean,
+			.token.number {
+				color: #bd93f9;
+			}
+
+			.token.selector,
+			.token.attr-name,
+			.token.string,
+			.token.char,
+			.token.builtin,
+			.token.inserted {
+				color: #50fa7b;
+			}
+
+			.token.operator,
+			.token.entity,
+			.token.url,
+			.language-css .token.string,
+			.style .token.string,
+			.token.variable {
+				color: #f8f8f2;
+			}
+
+			.token.atrule,
+			.token.attr-value,
+			.token.function,
+			.token.class-name {
+				color: #f1fa8c;
+			}
+
+			.token.keyword {
+				color: #8be9fd;
+			}
+
+			.token.regex,
+			.token.important {
+				color: #ffb86c;
+			}
+
+			.token.important,
+			.token.bold {
+				font-weight: bold;
+			}
+
+			.token.italic {
+				font-style: italic;
+			}
+
+			.token.entity {
+				cursor: help;
+			}
+
+			/* Dodatkowy styl dla prawidłowego wyświetlania sidebara na mobilnych */
+			@media (max-width: 768px) {
+				#sidebar {
+					width: 80%;
+					max-width: 300px;
+				}
+			}
+		</style>
+
+		<!-- JavaScript dla projektu -->
+		<script src="/scripts/clipboard.js" defer></script>
+		<script src="/scripts/view-transition.js" defer></script>
+		<script src="/scripts/prism-initializer.js" defer></script>
+
+		<!-- Prism JavaScript dla kolorowania składni -->
+		<script
+			is:inline
+			src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"
+			integrity="sha512-9khQRAUBYEJDCDVP2yw3LRUQvjJ0Pjx0EShmaQjcHa6AXiOv6qHQu9lCAIR8O+/D8FtaCoJ2c0Tf9Xo7hYH01Q=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"></script>
+		<script
+			is:inline
+			src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"
+			integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"></script>
+
+		<title>MaTails - Komponenty UI z Astro i Tailwind CSS</title>
+		<ViewTransitions />
+	</head>
+	<body class="bg-gray-50 text-gray-900">
+		<Topbar />
+		<Sidebar />
+
+		<!-- Główna treść -->
+		<main class="pt-16 transition-all duration-300" id="main-content">
+			<div class="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto">
+				<!-- Nagłówek strony -->
+				<div class="mb-8">
+					<h1 class="text-2xl font-bold text-gray-800 mb-2">
+						<slot name="page-title">MaTails - Komponenty UI</slot>
+					</h1>
+					<p class="text-gray-600">
+						<slot name="page-description">Kolekcja gotowych komponentów zbudowanych z Astro i Tailwind CSS.</slot>
+					</p>
+				</div>
+
+				<!-- Główna zawartość -->
+				<div class="view-container bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+					<slot />
+				</div>
+
+				<!-- Stopka -->
+				<footer class="mt-8 text-center text-sm text-gray-500 pb-8">
+					<div class="mb-2">
+						<span>MaTails &copy; 2025</span>
+						<span class="mx-2">|</span>
+						<a href="https://github.com/MatPawluk/MaTail" class="text-blue-600 hover:underline">GitHub</a>
+					</div>
+					<div>
+						<p>
+							Zbudowane z 💙 przy użyciu <a href="https://astro.build" class="text-blue-600 hover:underline">Astro</a> i
+							<a href="https://tailwindcss.com" class="text-blue-600 hover:underline">Tailwind CSS</a>.
+						</p>
+					</div>
+				</footer>
+			</div>
+		</main>
+
+		<script>
+			// Skrypt do obsługi responsywnego sidebara
+			document.addEventListener('DOMContentLoaded', function () {
+				const sidebar = document.getElementById('sidebar');
+				const mainContent = document.getElementById('main-content');
+
+				function adjustLayout() {
+					if (window.innerWidth >= 768) {
+						// Na większych ekranach dodajemy margines
+						mainContent.classList.add('md:ml-64');
+					} else {
+						// Na mniejszych usuwamy
+						mainContent.classList.remove('md:ml-64');
+					}
+				}
+
+				// Wykonanie przy ładowaniu
+				adjustLayout();
+
+				// Nasłuchiwanie na zmiany rozmiaru okna
+				window.addEventListener('resize', adjustLayout);
+
+				// Po przejściu View Transitions
+				document.addEventListener('astro:after-swap', adjustLayout);
+			});
+		</script>
+	</body>
 </html>
+
+<!-- Dodaj ten skrypt inline wewnątrz tagu <head> w pliku Layout.astro -->
+
+<script is:inline>
+	// Natychmiastowe uruchomienie skryptu do naprawy sidebara
+	(function () {
+		// Zapewniamy, że skrypt zostanie uruchomiony natychmiast przy renderowaniu strony
+		function fixSidebar() {
+			const sidebar = document.getElementById('sidebar');
+			if (!sidebar) return;
+
+			// Gwarantujemy widoczność sidebara
+			sidebar.style.visibility = 'visible';
+			sidebar.style.display = 'block';
+			sidebar.style.zIndex = '50';
+
+			// Zapewniamy widoczność wszystkich linków i ikon w sidebarze
+			const allElements = sidebar.querySelectorAll('*');
+			allElements.forEach(el => {
+				el.style.visibility = 'visible';
+
+				// Ustawiamy właściwy display dla różnych elementów
+				if (el.tagName === 'A') {
+					el.style.display = 'flex';
+				} else if (el.tagName === 'SVG') {
+					el.style.display = 'inline-block';
+				} else if (el.tagName === 'SPAN' && el.classList.contains('flex-1')) {
+					el.style.display = 'block';
+				}
+			});
+
+			// Poprawiamy styl dla przestrzeni z nawigacją
+			const navSpace = sidebar.querySelector('.space-y-2');
+			if (navSpace) {
+				navSpace.style.display = 'block';
+			}
+		}
+
+		// Wykonaj natychmiast
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', fixSidebar);
+		} else {
+			fixSidebar();
+		}
+
+		// Wykonaj też po zamianie widoku Astro
+		document.addEventListener('astro:after-swap', fixSidebar);
+
+		// Obserwuj zmiany w DOM aby naprawić sidebar nawet jeśli jest dodany dynamicznie
+		const observer = new MutationObserver(mutations => {
+			for (const mutation of mutations) {
+				if (mutation.addedNodes.length) {
+					const sidebar = document.getElementById('sidebar');
+					if (sidebar) {
+						fixSidebar();
+					}
+				}
+			}
+		});
+
+		observer.observe(document.documentElement, {
+			childList: true,
+			subtree: true,
+		});
+	})();
+</script>
